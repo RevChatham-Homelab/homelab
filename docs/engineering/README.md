@@ -19,16 +19,18 @@ The priority is:
 
 Status: Deferred
 
-Ideas:
+### Planned Improvements
 
-- Standardize README layout across all applications
-- Add Service Information tables
-- Add Docker Volume section
-- Add Repository Files section
-- Add Integration section
-- Add Related Documentation section
-- Remove hardcoded image versions
-- Improve Markdown formatting consistency
+- Standardize README layout across all applications.
+- Add repository version information.
+- Add a "Last Updated" field.
+- Add a "Documentation Version" field.
+- Add Docker Volume section.
+- Add Repository Files section.
+- Add Integration section.
+- Add Related Documentation section.
+- Remove hardcoded image versions.
+- Improve Markdown formatting consistency.
 
 ---
 
