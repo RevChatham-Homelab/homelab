@@ -1,0 +1,17 @@
+services:
+  uptime-kuma:
+    image: ${UPTIME_KUMA_IMAGE}:${UPTIME_KUMA_TAG}
+    container_name: uptime-kuma
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - homelab
+    ports:
+      - "${UPTIME_KUMA_PORT}:3001"
+    volumes:
+      - ./data:/app/data
+
+networks:
+  homelab:
+    external: true

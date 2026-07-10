@@ -1,0 +1,13 @@
+# Local environment configuration
+.env
+
+# Persistent Uptime Kuma application data
+data/
+
+# Local backups
+data-backup-*/
+*.bak
+
+# Logs and temporary files
+*.log
+*.tmp
