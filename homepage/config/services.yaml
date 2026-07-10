@@ -1,0 +1,47 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Infrastructure:
+    - Proxmox:
+        href: https://proxmox.revchatham.com
+        icon: si-proxmox
+
+    - Portainer:
+        href: https://portainer.revchatham.com
+        icon: si-portainer
+
+    - Pi-hole:
+        href: http://192.168.1.101:8080/admin
+        icon: si-pihole
+
+    - Nginx Proxy Manager:
+        href: http://192.168.1.101:81
+        icon: si-nginxproxymanager
+
+    - Uptime Kuma:
+        href: http://192.168.1.101:3001
+        icon: si-uptimekuma
+
+- Monitoring:
+    - Grafana:
+        icon: grafana.png
+        href: https://grafana.revchatham.com
+        description: Dashboards & Metrics
+
+    - Prometheus:
+        href: http://192.168.1.101:9090
+        description: Metrics Database
+        icon: prometheus.png
+
+    - Authentik:
+        href: http://192.168.1.101:9000
+        description: Identity & SSO
+        icon: authentik.png
+
+- Documentation & Portfolio:
+
+    - Github:
+        href: https://github.com/RevChatham-Homelab/Homelab
+        description: Source Code & Documentation
+        icon: si-github

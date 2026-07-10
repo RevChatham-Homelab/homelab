@@ -1,0 +1,54 @@
+services:
+  prometheus:
+    image: ${PROMETHEUS_IMAGE}:${PROMETHEUS_TAG}
+    container_name: prometheus
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - homelab
+    ports:
+      - "${PROMETHEUS_PORT}:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+
+  node-exporter:
+    image: ${NODE_EXPORTER_IMAGE}:${NODE_EXPORTER_TAG}
+    container_name: node-exporter
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - homelab
+    ports:
+      - "${NODE_EXPORTER_PORT}:9100"
+    pid: host
+    volumes:
+      - /:/host:ro,rslave
+    command:
+      - '--path.rootfs=/host'
+
+  cadvisor:
+    image: ${CADVISOR_IMAGE}:${CADVISOR_TAG}
+    container_name: cadvisor
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - homelab
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+
+volumes:
+  prometheus_data:
+
+networks:
+  homelab:
+    external: true

@@ -1,0 +1,18 @@
+services:
+  npm:
+    image: ${NPM_IMAGE}:${NPM_TAG}
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    networks:
+      - homelab
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+networks:
+  homelab:
+    external: true
