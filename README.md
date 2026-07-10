@@ -77,19 +77,23 @@ Every service is deployed using Docker, documented, audited, and version control
 
 ```text
 homelab/
-├── docker/
+├── authentik/
 ├── docs/
-│   ├── audits/
 │   ├── architecture/
+│   ├── audits/
 │   ├── backups/
+│   ├── decisions/
+│   ├── engineering/
 │   ├── setup/
+│   ├── templates/
 │   └── troubleshooting/
-├── scripts/
-├── assets/
-├── README.md
-├── CHANGELOG.md
-├── LICENSE
-└── .gitignore
+├── grafana/
+├── homepage/
+│   └── config/
+├── nginx-proxy-manager/
+├── pihole/
+├── portainer/
+└── prometheus/
 ```
 
 ---
