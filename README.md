@@ -138,15 +138,15 @@ Completed:
 - Documentation framework
 - GitHub repository setup
 
-Upcoming:
+# Upcoming
 
-- Grafana audit
-- Prometheus audit
-- Nginx Proxy Manager audit
 - Uptime Kuma audit
-- Security hardening
 - Backup strategy
 - Architecture diagrams
+- Security hardening
+- README v1.1 documentation pass
+- Audit v1.1 documentation pass
+- Architecture Decision Records
 
 ---
 
@@ -154,6 +154,7 @@ Upcoming:
 
 This project follows several principles:
 
+- Functional infrastructure before polish
 - Security first
 - Documentation before optimization
 - Version controlled infrastructure
@@ -164,14 +165,12 @@ This project follows several principles:
 
 # Lessons Learned
 
-One of the primary goals of this homelab is documenting not only successful deployments, but also the troubleshooting process, design decisions, and lessons learned throughout the project.
+One of the primary goals of this homelab is documenting not only successful deployments, but also troubleshooting steps, design decisions, and lessons learned along the way.
 
-Each major service includes:
+Troubleshooting documentation is stored in:
 
-- Docker Compose configuration
-- Environment variable template (`.env.example`)
-- Service documentation (`README.md`)
-- Service audit report
+```text
+docs/troubleshooting/
 
 ---
 
