@@ -25,10 +25,10 @@ Every service is deployed using Docker, documented, audited, and version control
 | Homepage | Dashboard | ✅ |
 | Pi-hole | DNS Filtering | ✅ |
 | Authentik | Identity Provider / SSO | ✅ |
-| Grafana | Monitoring Dashboards | 🚧 |
-| Prometheus | Metrics Collection | 🚧 |
-| Uptime Kuma | Service Monitoring | 🚧 |
-| Nginx Proxy Manager | Reverse Proxy | 🚧 |
+| Grafana | Monitoring Dashboards | ✅ |
+| Prometheus | Metrics Collection | ✅ |
+| Uptime Kuma | Service Monitoring | ✅ |
+| Nginx Proxy Manager | Reverse Proxy | ✅ |
 | Portfolio Website | Personal Website | 🚧 |
 
 ---
