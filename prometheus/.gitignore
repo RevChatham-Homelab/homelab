@@ -1,8 +1,4 @@
 .env
-
-data/
-letsencrypt/
-
 *.bak
 *.log
 *.tmp

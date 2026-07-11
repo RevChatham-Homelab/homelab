@@ -1,92 +1,165 @@
 # Nginx Proxy Manager
 
-## Overview
+**Project:** RevChatham Homelab  
+**Service:** Reverse Proxy  
+**Status:** Production  
+**Version:** 1.0.0  
+**Last Updated:** 2026-07-10
 
-Nginx Proxy Manager provides a web interface for managing reverse proxy hosts, SSL certificates, and access to internal homelab services.
+---
 
-In this homelab, it is used to route public service URLs to internal applications.
+# Overview
 
-## Service Details
+Nginx Proxy Manager provides centralized reverse proxy management for the RevChatham Homelab.
 
-| Item | Value |
-|---|---|
-| Container | `nginx-proxy-manager` |
-| Image | `jc21/nginx-proxy-manager:2.15.1` |
-| Network | `homelab` |
-| Admin UI | `http://SERVER-IP:81` |
-| HTTP | `80` |
-| HTTPS | `443` |
+It manages HTTPS certificates, reverse proxy hosts, and external access to homelab services through Cloudflare Tunnel.
 
-## Directory Layout
+---
 
-```text
-nginx-proxy-manager/
-├── compose.yml
-├── .env
-├── .env.example
-├── .gitignore
-├── data/
-└── letsencrypt/
-```
+# Purpose
 
-## Start
+The service provides:
 
-```bash
-docker compose up -d
-```
+- Reverse proxy management
+- SSL certificate management
+- HTTPS termination
+- Internal service publishing
+- Cloudflare Tunnel integration
 
-## Stop
+---
 
-```bash
-docker compose down
-```
+# Components
 
-## Restart
+| Component | Purpose |
+|-----------|---------|
+| Nginx Proxy Manager | Reverse proxy and web management |
+| SQLite Database | Stores configuration and proxy hosts |
+| Let's Encrypt | SSL certificate management |
 
-```bash
-docker compose restart
-```
+---
 
-## View Logs
-
-```bash
-docker compose logs -f
-```
-
-## Update
-
-Update the image tag in `.env`, then run:
-
-```bash
-docker compose pull
-docker compose up -d
-```
-
-## Backup
-
-Back up these folders:
+# Docker Images
 
 ```text
+jc21/nginx-proxy-manager:2.15.1
+```
+
+---
+
+# Environment Variables
+
+Configuration is stored in:
+
+```text
+.env
+```
+
+An example configuration is provided in:
+
+```text
+.env.example
+```
+
+---
+
+# Persistent Data
+
+Persistent application data:
+
+```text
+data/
+```
+
+SSL certificates:
+
+```text
+letsencrypt/
+```
+
+---
+
+# Networking
+
+Docker Network:
+
+```text
+homelab
+```
+
+Published Ports:
+
+```text
+80
+81
+443
+```
+
+Container Name:
+
+```text
+nginx-proxy-manager
+```
+
+---
+
+# Security Notes
+
+The following are excluded from Git:
+
+```text
+.env
+data/
+letsencrypt/
+*.bak
+*.log
+*.tmp
+```
+
+Runtime data and SSL certificates are intentionally excluded from version control.
+
+---
+
+# Deployment
+
+Deployment Method:
+
+```text
+Docker Compose
+```
+
+Restart Policy:
+
+```text
+unless-stopped
+```
+
+Health Check:
+
+```text
+Healthy
+```
+
+---
+
+# Documentation
+
+Repository files:
+
+```text
+compose.yml
+.env.example
+.gitignore
+README.md
+```
+
+Runtime files excluded from Git:
+
+```text
+.env
 data/
 letsencrypt/
 ```
 
-Example:
+---
 
-```bash
-tar -czf nginx-proxy-manager-backup.tar.gz data letsencrypt compose.yml .env.example README.md
-```
-
-## Restore
-
-```bash
-tar -xzf nginx-proxy-manager-backup.tar.gz
-docker compose up -d
-```
-
-## Notes
-
-- `.env` is not committed because it may contain local configuration.
-- `data/` and `letsencrypt/` are not committed because they contain runtime data and certificates.
-- Nginx Proxy Manager uses the shared `homelab` Docker network.
-- Public DNS and Cloudflare Tunnel route traffic to this service.
+README Template v1.0

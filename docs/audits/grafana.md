@@ -3,30 +3,18 @@
 **Project:** RevChatham Homelab  
 **Service:** Grafana  
 **Audit Version:** 1.0.0  
-**Audit Date:** 2026-07-07  
-**Status:** 🟡 Passed with Recommendations
+**Audit Date:** 2026-07-10  
+**Status:** 🟢 Passed
 
 ---
 
 # Executive Summary
 
-Grafana provides centralized dashboards and visualization for monitoring the homelab. It integrates with Prometheus for metrics collection and Authentik for authentication.
+Grafana provides centralized visualization and dashboarding for metrics collected throughout the RevChatham Homelab.
 
-The deployment follows Docker best practices after moving secrets into a `.env` file. The service is operational and w# Grafana Service Audit
+The deployment has been standardized using Docker Compose, pinned Docker images, environment files, persistent storage, service-specific Git exclusions, and repository-safe documentation.
 
-**Project:** RevChatham Homelab  
-**Service:** Grafana  
-**Audit Version:** 1.0.0  
-**Audit Date:** 2026-07-07  
-**Status:** 🟡 Passed with Recommendations
-
----
-
-# Executive Summary
-
-Grafana provides centralized dashboards and visualization for monitoring the homelab. It integrates with Prometheus for metrics collection and Authentik for authentication.
-
-The deployment follows Docker best practices after moving secrets into a `.env` file. The service is operational and well integrated with the existing infrastructure.
+The service is operational and integrated with Prometheus for metrics collection and Authentik for Single Sign-On (SSO).
 
 ---
 
@@ -34,9 +22,16 @@ The deployment follows Docker best practices after moving secrets into a `.env` 
 
 | Component | Purpose |
 |-----------|---------|
-| Grafana | Visualization platform |
-| Prometheus | Metrics datasource |
-| Authentik | Identity Provider |
+| Grafana | Metrics visualization and dashboards |
+| SQLite Database | Stores dashboards, users, organizations, and configuration |
+
+---
+
+# Docker Images
+
+| Component | Image | Version |
+|-----------|-------|---------|
+| Grafana OSS | `grafana/grafana-oss` | `13.0.2` |
 
 ---
 
@@ -44,30 +39,34 @@ The deployment follows Docker best practices after moving secrets into a `.env` 
 
 | Category | Status | Notes |
 |----------|:------:|------|
-| Docker Compose | ✅ | Well organized |
+| Docker Compose | ✅ | Deployment managed through `compose.yml` |
 | Environment Variables | ✅ | Uses `.env` |
-| Version Pinning | ⚠️ | Using `latest` tag |
-| Persistent Storage | ✅ | Docker volume |
-| Docker Networking | ✅ | Shared `homelab` network |
-| Restart Policy | ✅ | `unless-stopped` |
+| Version Pinning | ✅ | Image pinned to `13.0.2` |
+| Persistent Storage | ✅ | Uses Docker volume `grafana-data` |
+| Docker Networking | ✅ | Uses shared `homelab` network |
+| Restart Policy | ✅ | Uses `unless-stopped` |
+| Runtime Health | ✅ | Container operational |
+| Prometheus Integration | ✅ | Metrics source configured |
+| Authentik Integration | ✅ | OIDC authentication operational |
 
 ---
 
 # Security Review
 
-## Secrets
+## Environment Configuration
 
-Originally, sensitive values were hardcoded in `docker-compose.yml`.
+Grafana uses environment variables for:
 
-### Improvements Made
+- Docker image configuration
+- Administrator credentials
+- OIDC configuration
+- Server configuration
 
-- Moved Grafana administrator credentials to `.env`
-- Moved Authentik OAuth credentials to `.env`
-- Created `.env.example`
+Sensitive values are stored only within the production `.env` file.
 
 Result:
 
-✅ Resolved
+✅ Passed
 
 ---
 
@@ -75,17 +74,48 @@ Result:
 
 | Item | Commit to Git |
 |------|:-------------:|
-| Docker Volume | ❌ |
 | `.env` | ❌ |
 | `.env.example` | ✅ |
+| `grafana-data` volume | ❌ |
+| `compose.yml` | ✅ |
+| `.gitignore` | ✅ |
 | `README.md` | ✅ |
-| `docker-compose.yml` | ✅ |
 
 ---
 
-## Authentication
+## Persistent Data
 
-Grafana authenticates users through Authentik using OIDC.
+Persistent application data is stored in the Docker volume:
+
+```text
+grafana-data
+```
+
+This volume contains:
+
+- Dashboards
+- Users
+- Organizations
+- Data sources
+- Plugins
+- Application settings
+
+Result:
+
+✅ Passed
+
+---
+
+## Git Exclusions
+
+The service-specific `.gitignore` excludes:
+
+```text
+.env
+*.bak
+*.log
+*.tmp
+```
 
 Result:
 
@@ -99,947 +129,34 @@ Result:
 |------|:------:|
 | README | ✅ |
 | `.env.example` | ✅ |
+| `.gitignore` | ✅ |
 | Compose Documentation | ✅ |
+| Audit Documentation | ✅ |
 
 ---
 
 # Improvements Completed
 
-- Secrets removed from Compose
-- `.env` standardized
-- `.env.example` created
-- README created
-- Compose file standardized
-
----
-
-# Recommendations
-
-## Security Hardening
-
-- Pin Grafana image to a specific version instead of `latest`
-- Remove direct port exposure after validating reverse proxy
-- Rotate Grafana administrator password
-- Rotate Authentik OAuth client secret
+- Docker image pinned to version `13.0.2`
+- Standardized `.env`
+- Standardized `.env.example`
+- Created service-specific `.gitignore`
+- Created README using README Template v1.0
+- Persistent Docker volume documented
+- Authentik OIDC integration documented
+- Prometheus integration documented
+- Repository-safe files copied to `~/homelab/grafana`
 
 ---
 
 # Audit Result
 
-**Status:** 🟡 Passed with Recommendations
+**Status:** 🟢 Passed
 
-Grafana is production-ready for the homelab. Remaining work focuses on version pinning and planned security hardening.ell integrated with the existing infrastructure.
+Grafana has been standardized according to the RevChatham Homelab deployment, documentation, environment, and security standards.
 
----
-
-# Service Overview
-
-| Component | Purpose |
-|-----------|---------|
-| Grafana | Visualization platform |
-| Prometheus | Metrics datasource |
-| Authentik | Identity Provider |
-
----
-
-# Deployment Review
-
-| Category | Status | Notes |
-|----------|:------:|------|
-| Docker Compose | ✅ | Well organized |
-| Environment Variables | ✅ | Uses `.env` |
-| Version Pinning | ⚠️ | Using `latest` tag |
-| Persistent Storage | ✅ | Docker volume |
-| Docker Networking | ✅ | Shared `homelab` network |
-| Restart Policy | ✅ | `unless-stopped` |
-
----
-
-# Security Review
-
-## Secrets
-
-Originally, sensitive values were hardcoded in `docker-compose.yml`.
-
-### Improvements Made
-
-- Moved Grafana administrator credentials to `.env`
-- Moved Authentik OAuth credentials to `.env`
-- Created `.env.example`
-
-Result:
-
-✅ Resolved
-
----
-
-## Runtime Data
-
-| Item | Commit to Git |
-|------|:-------------:|
-| Docker Volume | ❌ |
-| `.env` | ❌ |
-| `.env.example` | ✅ |
-| `README.md` | ✅ |
-| `docker-compose.yml` | ✅ |
-
-# Grafana Service Audit
-
-**Project:** RevChatham Homelab  
-**Service:** Grafana  
-**Audit Version:** 1.0.0  
-**Audit Date:** 2026-07-07  
-**Status:** 🟡 Passed with Recommendations
-
----
-
-# Executive Summary
-
-Grafana provides centralized dashboards and visualization for monitoring the homelab. It integrates with Prometheus for metrics collection and Authentik for authentication.
-
-The deployment follows Docker best practices after moving secrets into a `.env` file. The service is operational and well integrated with the existing infrastructure.
-
----
-
-# Service Overview
-
-| Component | Purpose |
-|-----------|---------|
-| Grafana | Visualization platform |
-| Prometheus | Metrics datasource |
-| Authentik | Identity Provider |
-
----
-
-# Deployment Review
-
-| Category | Status | Notes |
-|----------|:------:|------|
-| Docker Compose | ✅ | Well organized |
-| Environment Variables | ✅ | Uses `.env` |
-| Version Pinning | ⚠️ | Using `latest` tag |
-| Persistent Storage | ✅ | Docker volume |
-| Docker Networking | ✅ | Shared `homelab` network |
-| Restart Policy | ✅ | `unless-stopped` |
-
----
-
-# Security Review
-
-## Secrets
-
-Originally, sensitive values were hardcoded in `docker-compose.yml`.
-
-### Improvements Made
-
-- Moved Grafana administrator credentials to `.env`
-- Moved Authentik OAuth credentials to `.env`
-- Created `.env.example`
-
-Result:
-
-✅ Resolved
-
----
-
-## Runtime Data
-
-| Item | Commit to Git |
-|------|:-------------:|
-| Docker Volume | ❌ |
-| `.env` | ❌ |
-| `.env.example` | ✅ |
-| `README.md` | ✅ |
-| `docker-compose.yml` | ✅ |
-
----
-
-## Authentication
-
-Grafana authenticates users through Authentik using OIDC.
-
-Result:
-
-✅ Passed
-
----
-
-# Documentation Review
-
-| Item | Status |
-|------|:------:|
-| README | ✅ |
-| `.env.example` | ✅ |
-| Compose Documentation | ✅ |
-
----
-
-# Improvements Completed
-
-- Secrets removed from Compose
-- `.env` standardized
-- `.env.example` created
-- README created
-- Compose file standardized
-
----
-
-# Recommendations
-
-## Security Hardening
-
-- Pin Grafana image to a specific version instead of `latest`
-- Remove direct port exposure after validating reverse proxy
-- Rotate Grafana administrator password
-- Rotate Authentik OAuth client secret
-
----
-
-# Audit Result
-
-**Status:** 🟡 Passed with Recommendations
-
-Grafana is production-ready for the homelab. Remaining work focuses on version pinning and planned security hardening.---
-
-## Authentication
-
-Grafana authenticates users through Authentik using OIDC.
-
-Result:
-
-✅ Passed
-
----
-
-# Documentation Review
-
-| Item | Status |
-|------|:------:|
-| README | ✅ |
-| `.env.example` | ✅ |
-| Compose Documentation | ✅ |
-
----
-# Grafana Service Audit
-
-**Project:** RevChatham Homelab  
-**Service:** Grafana  
-**Audit Version:** 1.0.0  
-**Audit Date:** 2026-07-07  
-**Status:** 🟡 Passed with Recommendations
-
----
-
-# Executive Summary
-
-Grafana provides centralized dashboards and visualization for monitoring the homelab. It integrates with Prometheus for metrics collection and Authentik for authentication.
-
-The deployment follows Docker best practices after moving secrets into a `.env` file. The service is operational and well integrated with the existing infrastructure.
-
----
-
-# Service Overview
-
-| Component | Purpose |
-|-----------|---------|
-| Grafana | Visualization platform |
-| Prometheus | Metrics datasource |
-| Authentik | Identity Provider |
-
----
-
-# Deployment Review
-
-| Category | Status | Notes |
-|----------|:------:|------|
-| Docker Compose | ✅ | Well organized |
-| Environment Variables | ✅ | Uses `.env` |
-| Version Pinning | ⚠️ | Using `latest` tag |
-| Persistent Storage | ✅ | Docker volume |
-| Docker Networking | ✅ | Shared `homelab` network |
-| Restart Policy | ✅ | `unless-stopped` |
-
----
-
-# Security Review
-
-## Secrets
-
-Originally, sensitive values were hardcoded in `docker-compose.yml`.
-
-### Improvements Made
-
-- Moved Grafana administrator credentials to `.env`
-- Moved Authentik OAuth credentials to `.env`
-- Created `.env.example`
-
-Result:
-
-✅ Resolved
-
----
-
-## Runtime Data
-
-| Item | Commit to Git |
-|------|:-------------:|
-| Docker Volume | ❌ |
-| `.env` | ❌ |
-| `.env.example` | ✅ |
-| `README.md` | ✅ |
-| `docker-compose.yml` | ✅ |
-
----
-
-## Authentication
-
-Grafana authenticates users through Authentik using OIDC.
-
-Result:
-
-✅ Passed
-
----
-
-# Documentation Review
-
-| Item | Status |
-|------|:------:|
-| README | ✅ |
-| `.env.example` | ✅ |# Grafana Service Audit
-
-**Project:** RevChatham Homelab  
-**Service:** Grafana  
-**Audit Version:** 1.0.0  
-**Audit Date:** 2026-07-07  
-**Status:** 🟡 Passed with Recommendations
-
----
-
-# Executive Summary
-
-Grafana provides centralized dashboards and visualization for monitoring the homelab. It integrates with Prometheus for metrics collection and Authentik for authentication.
-
-The deployment follows Docker best practices after moving secrets into a `.env` file. The service is operational and well integrated with the existing infrastructure.
-
----
-
-# Service Overview
-
-| Component | Purpose |
-|-----------|---------|
-| Grafana | Visualization platform |
-| Prometheus | Metrics datasource |
-| Authentik | Identity Provider |
-
----
-
-# Deployment Review
-
-| Category | Status | Notes |
-|----------|:------:|------|
-| Docker Compose | ✅ | Well organized |
-| Environment Variables | ✅ | Uses `.env` |
-| Version Pinning | ⚠️ | Using `latest` tag |
-| Persistent Storage | ✅ | Docker volume |
-| Docker Networking | ✅ | Shared `homelab` network |
-| Restart Policy | ✅ | `unless-stopped` |
-
----
-
-# Security Review
-
-## Secrets
-
-Originally, sensitive values were hardcoded in `docker-compose.yml`.
-
-### Improvements Made
-
-- Moved Grafana administrator credentials to `.env`
-- Moved Authentik OAuth credentials to `.env`
-- Created `.env.example`
-
-Result:
-
-✅ Resolved
-
----
-
-## Runtime Data
-
-| Item | Commit to Git |
-|------|:-------------:|
-| Docker Volume | ❌ |
-| `.env` | ❌ |
-| `.env.example` | ✅ |
-| `README.md` | ✅ |
-| `docker-compose.yml` | ✅ |
-
----
-
-## Authentication
-
-Grafana authenticates users through Authentik using OIDC.
-
-Result:
-
-✅ Passed
-
----
-
-# Documentation Review
-
-| Item | Status |
-|------|:------:|
-| README | ✅ |
-| `.env.example` | ✅ |# Grafana Service Audit
-
-**Project:** RevChatham Homelab  
-**Service:** Grafana  
-**Audit Version:** 1.0.0  
-**Audit Date:** 2026-07-07  # Grafana Service Audit
-
-**Project:** RevChatham Homelab  
-**Service:** Grafana  
-**Audit Version:** 1.0.0  
-**Audit Date:** 2026-07-07  
-**Status:** 🟡 Passed with Recommendations
-
----
-
-# Executive Summary
-# Grafana Service Audit
-
-**Project:** RevChatham Homelab  
-**Service:** Grafana  
-**Audit Version:** 1.0.0  
-**Audit Date:** 2026-07-07  
-**Status:** 🟡 Passed with Recommendations
-
----
-
-# Executive Summary
-
-Grafana provides centralized dashboards and visualization for monitoring the homelab. It integrates with Prometheus for metrics collection and Authentik for authentication.
-
-The deployment follows Docker best practices after moving secrets into a `.env` file. The service is operational and well integrated with the existing infrastructure.
-
----
-
-# Service Overview
-
-| Component | Purpose |
-|-----------|---------|
-| Grafana | Visualization platform |
-| Prometheus | Metrics datasource |# Grafana Service Audit
-
-**Project:** RevChatham Homelab  
-**Service:** Grafana  
-**Audit Version:** 1.0.0  
-**Audit Date:** 2026-07-07  
-**Status:** 🟡 Passed with Recommendations
-
----
-
-# Executive Summary
-
-Grafana provides centralized dashboards and visualization for monitoring the homelab. It integrates with Prometheus for metrics collection and Authentik for authentication.
-
-The deployment follows Docker best practices after moving secrets into a `.env` file. The service is operational and well integrated with the existing infrastructure.
-
----
-
-# Service Overview
-
-| Component | Purpose |
-|-----------|---------|
-| Grafana | Visualization platform |
-| Prometheus | Metrics datasource |
-| Authentik | Identity Provider |
-
----
-
-# Deployment Review
-
-| Category | Status | Notes |
-|----------|:------:|------|
-| Docker Compose | ✅ | Well organized |
-| Environment Variables | ✅ | Uses `.env` |
-| Version Pinning | ⚠️ | Using `latest` tag |
-| Persistent Storage | ✅ | Docker volume |
-| Docker Networking | ✅ | Shared `homelab` network |
-| Restart Policy | ✅ | `unless-stopped` |
-
----
-
-# Security Review
-
-## Secrets
-
-Originally, sensitive values were hardcoded in `docker-compose.yml`.
-
-### Improvements Made
-
-- Moved Grafana administrator credentials to `.env`
-- Moved Authentik OAuth credentials to `.env`
-- Created `.env.example`
-
-Result:
-
-✅ Resolved
-
----
-
-## Runtime Data
+The service is operational and provides centralized metrics visualization and dashboarding for the homelab.
 
-| Item | Commit to Git |
-|------|:-------------:|
-| Docker Volume | ❌ |
-| `.env` | ❌ |
-| `.env.example` | ✅ |
-| `README.md` | ✅ |
-| `docker-compose.yml` | ✅ |
-
----
-
-## Authentication
-
-Grafana authenticates users through Authentik using OIDC.
-
-Result:
-
-✅ Passed
-
----
-
-# Documentation Review
-
-| Item | Status |
-|------|:------:|
-| README | ✅ |
-| `.env.example` | ✅ |
-| Compose Documentation | ✅ |
-
----
-
-# Improvements Completed
-
-- Secrets removed from Compose
-- `.env` standardized
-- `.env.example` created
-- README created
-- Compose file standardized
-
----
-
-# Recommendations
-
-## Security Hardening
-
-- Pin Grafana image to a specific version instead of `latest`
-- Remove direct port exposure after validating reverse proxy
-- Rotate Grafana administrator password
-- Rotate Authentik OAuth client secret
-
----
-
-# Audit Result
-
-**Status:** 🟡 Passed with Recommendations
-
-Grafana is production-ready for the homelab. Remaining work focuses on version pinning and planned security hardening.
-| Authentik | Identity Provider |
-
----
-
-# Deployment Review
-
-| Category | Status | Notes |
-|----------|:------:|------|
-| Docker Compose | ✅ | Well organized |
-| Environment Variables | ✅ | Uses `.env` |
-| Version Pinning | ⚠️ | Using `latest` tag |
-| Persistent Storage | ✅ | Docker volume |
-| Docker Networking | ✅ | Shared `homelab` network |
-| Restart Policy | ✅ | `unless-stopped` |
-
----
-
-# Security Review
-
-## Secrets
-
-Originally, sensitive values were hardcoded in `docker-compose.yml`.
-
-### Improvements Made
-
-- Moved Grafana administrator credentials to `.env`
-- Moved Authentik OAuth credentials to `.env`
-- Created `.env.example`
-
-Result:
-
-✅ Resolved
-
----
-
-## Runtime Data
-
-| Item | Commit to Git |
-|------|:-------------:|
-| Docker Volume | ❌ |
-| `.env` | ❌ |
-| `.env.example` | ✅ |
-| `README.md` | ✅ |
-| `docker-compose.yml` | ✅ |
-
----
-
-## Authentication
-
-Grafana authenticates users through Authentik using OIDC.
-
-Result:
-
-✅ Passed
-
----
-
-# Documentation Review
-
-| Item | Status |
-|------|:------:|
-| README | ✅ |
-| `.env.example` | ✅ |
-| Compose Documentation | ✅ |
-
----
-
-# Improvements Completed
-
-- Secrets removed from Compose
-- `.env` standardized
-- `.env.example` created
-- README created
-- Compose file standardized
-
----
-
-# Recommendations
-
-## Security Hardening
-
-- Pin Grafana image to a specific version instead of `latest`
-- Remove direct port exposure after validating reverse proxy
-- Rotate Grafana administrator password
-- Rotate Authentik OAuth client secret
-
----
-
-# Audit Result
-
-**Status:** 🟡 Passed with Recommendations
-
-Grafana is production-ready for the homelab. Remaining work focuses on version pinning and planned security hardening.
-Grafana provides centralized dashboards and visualization for monitoring the homelab. It integrates with Prometheus for metrics collection and Authentik for authentication.
-
-The deployment follows Docker best practices after moving secrets into a `.env` file. The service is operational and well integrated with the existing infrastructure.
-
----
-
-# Service Overview
-
-| Component | Purpose |
-|-----------|---------|
-| Grafana | Visualization platform |
-| Prometheus | Metrics datasource |
-| Authentik | Identity Provider |
-
----
-
-# Deployment Review
-
-| Category | Status | Notes |
-|----------|:------:|------|
-| Docker Compose | ✅ | Well organized |
-| Environment Variables | ✅ | Uses `.env` |
-| Version Pinning | ⚠️ | Using `latest` tag |
-| Persistent Storage | ✅ | Docker volume |
-| Docker Networking | ✅ | Shared `homelab` network |
-| Restart Policy | ✅ | `unless-stopped` |
-
----
-
-# Security Review
-
-## Secrets
-
-Originally, sensitive values were hardcoded in `docker-compose.yml`.
-
-### Improvements Made
-
-- Moved Grafana administrator credentials to `.env`
-- Moved Authentik OAuth credentials to `.env`
-- Created `.env.example`
-
-Result:
-
-✅ Resolved
-
----
-
-## Runtime Data
-
-| Item | Commit to Git |
-|------|:-------------:|
-| Docker Volume | ❌ |
-| `.env` | ❌ |
-| `.env.example` | ✅ |
-| `README.md` | ✅ |
-| `docker-compose.yml` | ✅ |
-
----
-
-## Authentication
-
-Grafana authenticates users through Authentik using OIDC.
-
-Result:
-
-✅ Passed
-
----
-
-# Documentation Review
-
-| Item | Status |
-|------|:------:|
-| README | ✅ |
-| `.env.example` | ✅ |
-| Compose Documentation | ✅ |
-
----
-
-# Improvements Completed
-
-- Secrets removed from Compose
-- `.env` standardized
-- `.env.example` created
-- README created
-- Compose file standardized
-
----
-
-# Recommendations
-
-## Security Hardening
-
-- Pin Grafana image to a specific version instead of `latest`
-- Remove direct port exposure after validating reverse proxy
-- Rotate Grafana administrator password
-- Rotate Authentik OAuth client secret
-
----
-
-# Audit Result
-
-**Status:** 🟡 Passed with Recommendations
-
-Grafana is production-ready for the homelab. Remaining work focuses on version pinning and planned security hardening.
-**Status:** 🟡 Passed with Recommendations
-
----
-
-# Executive Summary
-
-Grafana provides centralized dashboards and visualization for monitoring the homelab. It integrates with Prometheus for metrics collection and Authentik for authentication.
-
-The deployment follows Docker best practices after moving secrets into a `.env` file. The service is operational and well integrated with the existing infrastructure.
-
----
-
-# Service Overview
-
-| Component | Purpose |
-|-----------|---------|
-| Grafana | Visualization platform |
-| Prometheus | Metrics datasource |
-| Authentik | Identity Provider |
-
----
-
-# Deployment Review
-
-| Category | Status | Notes |
-|----------|:------:|------|
-| Docker Compose | ✅ | Well organized |
-| Environment Variables | ✅ | Uses `.env` |
-| Version Pinning | ⚠️ | Using `latest` tag |
-| Persistent Storage | ✅ | Docker volume |
-| Docker Networking | ✅ | Shared `homelab` network |
-| Restart Policy | ✅ | `unless-stopped` |
-
----
-
-# Security Review
-
-## Secrets
-
-Originally, sensitive values were hardcoded in `docker-compose.yml`.
-
-### Improvements Made
-
-- Moved Grafana administrator credentials to `.env`
-- Moved Authentik OAuth credentials to `.env`
-- Created `.env.example`
-
-Result:
-
-✅ Resolved
-
----
-
-## Runtime Data
-
-| Item | Commit to Git |
-|------|:-------------:|
-| Docker Volume | ❌ |
-| `.env` | ❌ |
-| `.env.example` | ✅ |
-| `README.md` | ✅ |
-| `docker-compose.yml` | ✅ |
-
----
-
-## Authentication
-
-Grafana authenticates users through Authentik using OIDC.
-
-Result:
-
-✅ Passed
-
----
-
-# Documentation Review
-
-| Item | Status |
-|------|:------:|
-| README | ✅ |
-| `.env.example` | ✅ |
-| Compose Documentation | ✅ |
-
 ---
-
-# Improvements Completed
-
-- Secrets removed from Compose
-- `.env` standardized
-- `.env.example` created
-- README created
-- Compose file standardized
-
----
-
-# Recommendations
-
-## Security Hardening
-
-- Pin Grafana image to a specific version instead of `latest`
-- Remove direct port exposure after validating reverse proxy
-- Rotate Grafana administrator password
-- Rotate Authentik OAuth client secret
-
----
-
-# Audit Result
-
-**Status:** 🟡 Passed with Recommendations
-
-Grafana is production-ready for the homelab. Remaining work focuses on version pinning and planned security hardening.
-| Compose Documentation | ✅ |
-
----
-
-# Improvements Completed
-
-- Secrets removed from Compose
-- `.env` standardized
-- `.env.example` created
-- README created
-- Compose file standardized
-
----
-
-# Recommendations
-
-## Security Hardening
-
-- Pin Grafana image to a specific version instead of `latest`
-- Remove direct port exposure after validating reverse proxy
-- Rotate Grafana administrator password
-- Rotate Authentik OAuth client secret
-
----
-
-# Audit Result
-
-**Status:** 🟡 Passed with Recommendations
-
-Grafana is production-ready for the homelab. Remaining work focuses on version pinning and planned security hardening.
-| Compose Documentation | ✅ |
-
----
-
-# Improvements Completed
-
-- Secrets removed from Compose
-- `.env` standardized
-- `.env.example` created
-- README created
-- Compose file standardized
-
----
-
-# Recommendations
-
-## Security Hardening
-
-- Pin Grafana image to a specific version instead of `latest`
-- Remove direct port exposure after validating reverse proxy
-- Rotate Grafana administrator password
-- Rotate Authentik OAuth client secret
-
----
-
-# Audit Result
-
-**Status:** 🟡 Passed with Recommendations
-
-Grafana is production-ready for the homelab. Remaining work focuses on version pinning and planned security hardening.
-# Improvements Completed
-
-- Secrets removed from Compose
-- `.env` standardized
-- `.env.example` created
-- README created
-- Compose file standardized
-
----
-
-# Recommendations
-
-## Security Hardening
-
-- Pin Grafana image to a specific version instead of `latest`
-- Remove direct port exposure after validating reverse proxy
-- Rotate Grafana administrator password
-- Rotate Authentik OAuth client secret
-
----
-
-# Audit Result
-
-**Status:** 🟡 Passed with Recommendations
 
-Grafana is production-ready for the homelab. Remaining work focuses on version pinning and planned security hardening.
+Audit Template v1.0

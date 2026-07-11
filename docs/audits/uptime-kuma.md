@@ -1,104 +1,167 @@
 # Uptime Kuma Service Audit
 
-**Project:** RevChatham Homelab  
-**Service:** Uptime Kuma  
-**Audit Version:** 1.0.0  
-**Audit Date:** 2026-07-10  
-**Status:** 🟢 Passed
+## Executive Summary
 
----
+A complete audit of the Uptime Kuma deployment was performed following the RevChatham Homelab standardization process.
 
-# Executive Summary
+The deployment has been standardized using Docker Compose, Docker image version pinning, environment files, repository documentation, and Git exclusion standards.
 
-Uptime Kuma provides centralized service availability monitoring for the RevChatham Homelab.
-
-The deployment has been standardized using Docker Compose, pinned Docker images, environment files, service-specific Git exclusions, and repository-safe documentation.
-
-The service is operational and fully aligned with the RevChatham Homelab documentation and deployment standards.
+The service is healthy, operational, and ready for inclusion in the GitHub repository and system backups.
 
 ---
 
 # Service Overview
 
-| Component | Purpose |
-|-----------|---------|
-| Uptime Kuma | Service availability and endpoint monitoring |
-| SQLite Database | Stores monitors, configuration, notifications, and uptime history |
+**Application**
+
+Uptime Kuma
+
+**Purpose**
+
+Provides centralized monitoring for homelab infrastructure, services, and public endpoints.
+
+**Container Name**
+
+```text
+uptime-kuma
+```
+
+**Docker Network**
+
+```text
+homelab
+```
+
+**Status**
+
+Healthy
 
 ---
 
 # Docker Images
 
-| Component | Image | Version |
-|-----------|-------|---------|
-| Uptime Kuma | `louislam/uptime-kuma` | `2.4.0` |
+Docker image:
+
+```text
+louislam/uptime-kuma:2.4.0
+```
+
+Image version pinning is managed through:
+
+```text
+.env
+```
+
+Result:
+
+✅ Complete
 
 ---
 
 # Deployment Review
 
-| Category | Status | Notes |
-|----------|:------:|------|
-| Docker Compose | ✅ | Standardized deployment |
-| Environment Variables | ✅ | Uses `.env` |
-| Version Pinning | ✅ | Image pinned to `2.4.0` |
-| Persistent Storage | ✅ | Uses bind-mounted `./data` directory |
-| Docker Networking | ✅ | Shared `homelab` network |
-| Restart Policy | ✅ | `unless-stopped` |
-| Health Status | ✅ | Healthy |
+Verified:
 
----
+- Docker Compose deployment
+- Shared external Docker network
+- Restart policy
+- Persistent application data
+- Runtime health
+- Container startup
+- Homepage integration
+- Public accessibility
 
-# Security Review
+Runtime status:
 
-## Environment Variables
+- Healthy
+- No startup errors
+- Monitoring operational
 
-The service currently contains no sensitive environment variables.
-
-Configuration values include:
-
-- Docker image
-- Docker image version
-- Published host port
-
-The production `.env` file is excluded from Git.
-
-Result:
+Deployment Status:
 
 ✅ Passed
 
 ---
 
-## Runtime Data
+# Security Review
 
-| Item | Commit to Git |
-|------|:-------------:|
-| `.env` | ❌ |
-| `.env.example` | ✅ |
-| `data/` | ❌ |
-| `data-backup-*/` | ❌ |
-| `compose.yml` | ✅ |
-| `.gitignore` | ✅ |
-| `README.md` | ✅ |
+Verified:
+
+- `.env` excluded from Git
+- Runtime data excluded from Git
+- Backup directories excluded from Git
+- Shared Docker network used
+- No sensitive environment variables stored
+
+Ignored files:
+
+```text
+.env
+data/
+data-backup-*/
+*.bak
+*.log
+*.tmp
+```
+
+Security Status:
+
+✅ Passed
 
 ---
 
-## Persistent Data
+# Documentation Review
 
-Application data is stored in:
+Completed:
+
+- README.md
+- compose.yml
+- .env.example
+- .gitignore
+
+Copied into:
 
 ```text
-./data
+homelab/uptime-kuma/
+```
+
+Documentation Status:
+
+✅ Complete
+
+---
+
+# Improvements Completed
+
+- Docker image pinned to version 2.4.0
+- Added `.env`
+- Added `.env.example`
+- Added `.gitignore`
+- Created README.md
+- Standardized repository layout
+- Verified runtime health
+- Verified Homepage integration
+- Verified public accessibility
+- Copied Git-tracked files into the homelab repository
 
 ---
 
 # Audit Result
 
-**Status:** 🟢 Passed
+| Category | Status |
+|----------|:------:|
+| Docker Compose | ✅ |
+| Image Version Pinning | ✅ |
+| Runtime Health | ✅ |
+| Documentation | ✅ |
+| Security | ✅ |
+| Repository Standardization | ✅ |
 
-Uptime Kuma has been standardized according to the RevChatham Homelab deployment, documentation, environment, and security standards.
+Overall Result:
 
-The service is operational and provides centralized monitoring for the homelab infrastructure.
+**PASS**
+
+Uptime Kuma meets the current RevChatham Homelab deployment standard and requires no additional changes before the next GitHub push and backup.
 
 ---
 

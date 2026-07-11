@@ -3,18 +3,18 @@
 **Project:** RevChatham Homelab  
 **Service:** Authentik  
 **Audit Version:** 1.0.0  
-**Audit Date:** 2026-07-06  
-**Status:** ✅ Passed
+**Audit Date:** 2026-07-10  
+**Status:** 🟢 Passed
 
 ---
 
 # Executive Summary
 
-Authentik serves as the centralized Identity Provider (IdP) for the homelab, providing Single Sign-On (SSO), OpenID Connect (OIDC), and user authentication services.
+Authentik provides centralized identity and access management for the RevChatham Homelab.
 
-The deployment follows Docker best practices by separating application components into dedicated containers, storing secrets outside the Docker Compose file, and using persistent storage for application data.
+The deployment has been standardized using Docker Compose, pinned Docker images, environment files, persistent storage, PostgreSQL, service-specific Git exclusions, and repository-safe documentation.
 
-Overall, the deployment is considered production-ready for a homelab environment with only minor documentation improvements remaining.
+The service is operational and provides Single Sign-On (SSO) and OpenID Connect (OIDC) authentication for homelab applications.
 
 ---
 
@@ -22,9 +22,18 @@ Overall, the deployment is considered production-ready for a homelab environment
 
 | Component | Purpose |
 |-----------|---------|
-| PostgreSQL | Stores Authentik database |
-| Authentik Server | Web interface and API |
-| Authentik Worker | Background jobs and scheduled tasks |
+| Authentik Server | Identity provider, web interface, and API |
+| Authentik Worker | Background processing and scheduled tasks |
+| PostgreSQL | Persistent database backend |
+
+---
+
+# Docker Images
+
+| Component | Image | Version |
+|-----------|-------|---------|
+| Authentik | `ghcr.io/goauthentik/server` | `2026.5.3` |
+| PostgreSQL | `postgres` | `16-alpine` |
 
 ---
 
@@ -32,26 +41,31 @@ Overall, the deployment is considered production-ready for a homelab environment
 
 | Category | Status | Notes |
 |----------|:------:|------|
-| Docker Compose | ✅ | Well organized |
+| Docker Compose | ✅ | Deployment managed through `compose.yml` |
 | Environment Variables | ✅ | Uses `.env` |
-| Version Pinning | ✅ | Image version pinned |
-| Persistent Storage | ✅ | Docker volumes configured |
-| Docker Networking | ✅ | Uses external `homelab` network |
-| Restart Policy | ✅ | `unless-stopped` configured |
-| PostgreSQL Health Check | ✅ | Configured correctly |
+| Version Pinning | ✅ | Images pinned |
+| Persistent Storage | ✅ | Uses bind-mounted application data |
+| Database | ✅ | PostgreSQL backend configured |
+| Docker Networking | ✅ | Uses shared `homelab` network |
+| Restart Policy | ✅ | Uses `unless-stopped` |
+| Runtime Health | ✅ | Server, Worker, and PostgreSQL operational |
+| OIDC Provider | ✅ | Operational |
+| SSO Integration | ✅ | Operational |
 
 ---
 
 # Security Review
 
-## Secrets Management
+## Environment Configuration
 
-Secrets are stored in `.env` rather than being hardcoded in `compose.yml`.
+Authentik uses environment variables for:
 
-### Verified
+- Docker image configuration
+- PostgreSQL credentials
+- Secret key
+- Database configuration
 
-- PostgreSQL password
-- Authentik secret key
+Sensitive values are stored only within the production `.env` file.
 
 Result:
 
@@ -61,16 +75,47 @@ Result:
 
 ## Runtime Data
 
-The following directories contain runtime data and should **not** be committed to Git:
-
-| Directory | Commit to Git |
-|-----------|:-------------:|
-| `data/` | ❌ |
-| `certs/` | ❌ |
+| Item | Commit to Git |
+|------|:-------------:|
 | `.env` | ❌ |
 | `.env.example` | ✅ |
-| `README.md` | ✅ |
+| `data/` | ❌ |
+| `certs/` | ❌ |
+| `custom-templates/` | ❌ |
 | `compose.yml` | ✅ |
+| `.gitignore` | ✅ |
+| `README.md` | ✅ |
+
+---
+
+## Persistent Data
+
+Persistent application data is stored within:
+
+```text
+data/
+```
+
+Additional runtime directories include:
+
+```text
+certs/
+custom-templates/
+```
+
+These locations contain:
+
+- Identity provider configuration
+- User accounts
+- Applications
+- Providers
+- Flows
+- Certificates
+- Branding assets
+
+Result:
+
+✅ Passed
 
 ---
 
@@ -82,11 +127,33 @@ The Authentik Worker mounts:
 /var/run/docker.sock
 ```
 
-This provides Docker integration capabilities but also grants elevated access to the Docker daemon.
+This enables Docker integration features and grants elevated access to the Docker daemon.
 
-### Recommendation
+The configuration is intentional and documented.
 
-Document the purpose of this mount and review it periodically during future security audits.
+Result:
+
+✅ Passed
+
+---
+
+## Git Exclusions
+
+The service-specific `.gitignore` excludes:
+
+```text
+.env
+data/
+certs/
+custom-templates/
+*.bak
+*.log
+*.tmp
+```
+
+Result:
+
+✅ Passed
 
 ---
 
@@ -96,50 +163,35 @@ Document the purpose of this mount and review it periodically during future secu
 |------|:------:|
 | README | ✅ |
 | `.env.example` | ✅ |
-| Docker Compose | ✅ |
+| `.gitignore` | ✅ |
+| Compose Documentation | ✅ |
+| Audit Documentation | ✅ |
 
 ---
 
 # Improvements Completed
 
-- Created `.env.example`
-- Standardized environment variables
-- Verified image version pinning
-- Verified PostgreSQL health checks
-- Added service README
-- Verified secrets are not stored in Docker Compose
+- Docker images pinned to specific versions
+- Standardized `.env`
+- Standardized `.env.example`
+- Created service-specific `.gitignore`
+- Created README using README Template v1.0
+- PostgreSQL deployment documented
+- Docker socket usage documented
+- OIDC configuration documented
+- Runtime data excluded from Git
+- Repository-safe files copied to `~/homelab/authentik`
 
 ---
 
-# Future Improvements
+# Audit Result
 
-## Phase 2 – Security Hardening
+**Status:** 🟢 Passed
 
-- Review Docker socket permissions.
-- Route access exclusively through Nginx Proxy Manager.
-- Remove unnecessary host port exposure where appropriate.
+Authentik has been standardized according to the RevChatham Homelab deployment, documentation, environment, and security standards.
 
-## Phase 3 – Documentation
-
-- Expand deployment guide.
-- Document disaster recovery procedure.
-- Document update procedure.
+The service is operational and provides centralized identity management, Single Sign-On (SSO), and OpenID Connect (OIDC) authentication for the homelab.
 
 ---
 
-# Audit Score
-
-| Category | Rating |
-|----------|:------:|
-| Docker Best Practices | ⭐⭐⭐⭐⭐ |
-| Security | ⭐⭐⭐⭐⭐ |
-| Documentation | ⭐⭐⭐⭐⭐ |
-| Maintainability | ⭐⭐⭐⭐⭐ |
-
----
-
-# Final Assessment
-
-**Result:** ✅ Passed
-
-Authentik is properly configured, follows Docker best practices, separates secrets from source-controlled files, and is ready for inclusion in the RevChatham Homelab repository.
+Audit Template v1.0

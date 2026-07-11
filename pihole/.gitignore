@@ -1,0 +1,6 @@
+.env
+etc-pihole/
+etc-dnsmasq.d/
+*.bak
+*.log
+*.tmp

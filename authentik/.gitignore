@@ -1,8 +1,7 @@
 .env
-
 data/
-letsencrypt/
-
+certs/
+custom-templates/
 *.bak
 *.log
 *.tmp

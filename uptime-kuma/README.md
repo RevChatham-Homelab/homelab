@@ -169,4 +169,4 @@ data-backup-*/
 
 ---
 
-**README Template:** v1.0
+README Template v1.0

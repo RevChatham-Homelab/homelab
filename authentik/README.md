@@ -3,31 +3,39 @@
 **Project:** RevChatham Homelab  
 **Service:** Identity Provider (IdP)  
 **Status:** Production  
-**Version:** 1.0.0
+**Version:** 1.0.0  
+**Last Updated:** 2026-07-10
+
+---
+
+# Overview
+
+Authentik provides centralized identity and access management for the RevChatham Homelab.
+
+It serves as the primary Identity Provider (IdP) and provides Single Sign-On (SSO) and OpenID Connect (OIDC) authentication for supported homelab applications.
 
 ---
 
 # Purpose
 
-Authentik provides centralized identity management for the homelab.
-
-Current responsibilities include:
+Authentik provides:
 
 - Single Sign-On (SSO)
 - OpenID Connect (OIDC)
-- Authentication Portal
-- User Management
-- Future application integration
+- User and group management
+- Authentication portal
+- Application and provider management
+- Centralized identity services
 
 ---
 
-# Containers
+# Components
 
-| Container | Purpose |
+| Component | Purpose |
 |-----------|---------|
-| PostgreSQL | Database |
-| Authentik Server | Web UI / API |
-| Authentik Worker | Background jobs |
+| Authentik Server | Web interface, API, and identity provider |
+| Authentik Worker | Background processing and scheduled tasks |
+| PostgreSQL | Persistent database backend |
 
 ---
 
@@ -36,6 +44,7 @@ Current responsibilities include:
 | Component | Image | Version |
 |-----------|-------|---------|
 | Authentik Server | `ghcr.io/goauthentik/server` | `2026.5.3` |
+| Authentik Worker | `ghcr.io/goauthentik/server` | `2026.5.3` |
 | PostgreSQL | `postgres` | `16-alpine` |
 
 ---
@@ -58,11 +67,12 @@ An example configuration is provided in:
 
 # Persistent Data
 
-| Directory | Purpose |
-|-----------|---------|
-| data/ | Authentik application data |
-| certs/ | TLS certificates |
-| custom-templates/ | Custom branding and templates |
+| File / Directory | Purpose |
+|------------------|---------|
+| `data/` | Authentik application data |
+| `certs/` | Certificates used by Authentik |
+| `custom-templates/` | Custom branding and templates |
+| PostgreSQL volume | Database storage |
 
 ---
 
@@ -74,35 +84,43 @@ Authentik connects to the shared Docker network:
 homelab
 ```
 
+Published ports:
+
+```text
+9000
+9444
+```
+
 ---
 
 # Security Notes
 
 - Secrets are stored in `.env`.
 - `.env` is excluded from Git.
-- PostgreSQL password is never stored in the compose file.
-- Image version is pinned.
+- PostgreSQL credentials are not stored directly in `compose.yml`.
+- Docker image versions are pinned.
 - PostgreSQL health checks are enabled.
+- Runtime data and certificates are excluded from Git.
 
-The worker container mounts the Docker socket:
+The Authentik Worker mounts the Docker socket:
 
 ```text
 /var/run/docker.sock
 ```
 
-This allows Docker integration features but grants elevated access to the Docker daemon. Review this requirement before modifying the deployment.
+This enables Docker integration features and grants elevated access to the Docker daemon.
 
 ---
 
 # Deployment
 
-Start the stack:
+Start:
 
 ```bash
 docker compose up -d
 ```
 
-Stop the stack:
+Stop:
 
 ```bash
 docker compose down
@@ -114,6 +132,13 @@ Restart:
 docker compose restart
 ```
 
+Update:
+
+```bash
+docker compose pull
+docker compose up -d
+```
+
 ---
 
 # Documentation
@@ -123,3 +148,7 @@ Additional documentation can be found in:
 ```text
 docs/audits/authentik.md
 ```
+
+---
+
+README Template v1.0
