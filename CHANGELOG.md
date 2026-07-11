@@ -10,12 +10,51 @@ This project follows the principles of **Semantic Versioning (SemVer)** and **Ke
 
 ### Planned
 
-- Complete remaining service audits
-- Security hardening phase
-- Backup and disaster recovery documentation
+- Repository-wide consistency review
+- GitHub milestone verification
+- Backup and disaster recovery implementation
 - Architecture diagrams
 - Infrastructure screenshots
 - Service deployment guides
+- Security hardening phase
+
+---
+
+## [0.5.0] - 2026-07-11
+
+### Added
+
+- Service-specific `.gitignore` files for all production services.
+- Standardized `README.md` documentation for all production services.
+- Standardized `.env.example` files using Environment Standard v1.0.
+- Completed Prometheus service documentation.
+- Completed Portainer service documentation.
+- Completed Uptime Kuma service documentation.
+- Completed Nginx Proxy Manager service documentation.
+- Added `SERVICE_REVIEW_CHECKLIST.md` to document the repository review process.
+
+### Audited
+
+- Grafana
+- Prometheus
+- Portainer
+- Uptime Kuma
+- Nginx Proxy Manager
+
+### Standardized
+
+- Docker Compose files validated against production deployments.
+- Service documentation aligned with README Template v1.0.
+- Service audits aligned with Audit Template v1.0.
+- Environment files aligned with Environment Standard v1.0.
+- Repository layout reviewed for consistency across all production services.
+
+### Fixed
+
+- Corrected Docker Compose issues discovered during repository review.
+- Corrected missing repository `.gitignore` files.
+- Corrected documentation inconsistencies identified during the service review process.
+- Corrected Markdown formatting issues discovered during audit validation.
 
 ---
 

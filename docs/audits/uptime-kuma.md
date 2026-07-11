@@ -1,6 +1,6 @@
 # Uptime Kuma Service Audit
 
-## Executive Summary
+# Executive Summary
 
 A complete audit of the Uptime Kuma deployment was performed following the RevChatham Homelab standardization process.
 

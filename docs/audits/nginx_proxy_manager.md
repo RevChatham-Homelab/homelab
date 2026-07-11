@@ -1,5 +1,13 @@
 # Nginx Proxy Manager Service Audit
 
+**Project:** RevChatham Homelab
+**Service:** Nginx Proxy Manager
+**Audit Version:** 1.0.0
+**Audit Date:** 2026-07-10
+**Status:** 🟢 Passed
+
+---
+
 # Executive Summary
 
 A complete audit of the Nginx Proxy Manager deployment was performed following the RevChatham Homelab standardization process.
