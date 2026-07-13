@@ -72,7 +72,9 @@ vzdump 100 --mode snapshot --compress zstd
 ls -lh /var/lib/vz/dump
 ```
 
-5. Generate SHA-256 checksums.
+5. Generate SHA-256 Checksums
+
+Generate SHA-256 Checksums for both the Proxmox backup log and the virtual machine backup.
 
 Example:
 
@@ -81,6 +83,11 @@ sha256sum \
 /var/lib/vz/dump/vzdump-qemu-100-YYYY_MM_DD-HH_MM_SS.log \
 /var/lib/vz/dump/vzdump-qemu-100-YYYY_MM_DD-HH_MM_SS.vma.zst
 ```
+
+Record both SHA-256 values in:
+
+- RP_MANIFEST.md
+- checksums.sha256
 
 6. Record the following in the Recovery Point:
 
