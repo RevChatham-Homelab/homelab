@@ -1,0 +1,23 @@
+############################################################
+# Recovery Point Checksum File
+#
+# This file contains SHA-256 hashes for the files included
+# in a Recovery Point.
+#
+# During Recovery Point creation this file is generated
+# automatically after all archives have been created.
+#
+# During recovery, use this file to verify that backups
+# have not been modified or corrupted.
+#
+# Example:
+#
+# sha256sum -c checksums.sha256
+#
+############################################################
+
+# Example Format
+
+0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef  documentation/homelab.tar.gz
+
+0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef  docker/homepage.tar.gz

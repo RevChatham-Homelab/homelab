@@ -20,6 +20,37 @@ This project follows the principles of **Semantic Versioning (SemVer)** and **Ke
 
 ---
 
+## [0.6.0] - 2026-07-13
+
+### Added
+
+- Introduced the Recovery Point Standard v1.0.0.
+- Created the first standardized Recovery Point (`RP-20260711-001`).
+- Established the Recovery Point directory structure.
+- Added `RP_MANIFEST.md`.
+- Added `verification.log`.
+- Added `SYSTEM_RECOVERY_MANUAL.md`.
+- Added `checksums.sha256` verification workflow.
+- Added Proxmox VM backup integration into the Recovery Point standard.
+- Added `RP_NOTES.md` for Recovery Point-specific operational notes.
+- Added `RP-YYYYMMDD-000` Recovery Point template.
+
+### Standardized
+
+- Recovery Point header format.
+- Recovery Point verification workflow.
+- Docker backup organization.
+- Proxmox backup documentation and verification.
+- Backup Type metadata for Recovery Points.
+- SHA-256 verification process.
+
+### Completed
+
+- Recovery Point `RP-20260711-001`.
+- Recovery Point Standard v1.0.0 baseline implementation.
+
+---
+
 ## [0.5.0] - 2026-07-11
 
 ### Added
@@ -65,7 +96,17 @@ This project follows the principles of **Semantic Versioning (SemVer)** and **Ke
 - GitHub repository
 - SSH authentication for Git
 - Documentation framework
-- Project roadmap
+# Milestone v0.6.0
+
+Status: Complete
+
+Major Deliverables
+
+- Established Recovery Point Standard v1.0.0
+- Completed RP-20260711-001
+- Standardized verification workflow
+- Integrated Docker and Proxmox backup procedures
+- Created Recovery Point template (RP-YYYYMMDD-000)- Project roadmap
 - Audit summary
 - Documentation standards
 - Root README

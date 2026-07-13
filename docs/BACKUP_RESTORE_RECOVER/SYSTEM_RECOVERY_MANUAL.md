@@ -52,7 +52,7 @@ Every procedure should provide sufficient context to allow successful recovery u
 
 # Recovery Overview
 
-The detailed recovery procedures are developed and validated throughout Milestone v0.6.0.
+The detailed recovery procedures will be developed and validated during Milestone v0.6.0.
 
 As procedures are completed and tested, they will be added to this manual in the approved recovery order.
 
@@ -95,6 +95,14 @@ The recovery procedures will be completed during Milestone v0.6.0 as each recove
 This section records observations made during recovery exercises and real-world recovery events.
 
 Lessons documented here may result in future draft proposals under the Independent Standard Evolution (ISE) process.
+
+---
+
+# Document Control
+
+This manual is maintained under the Independent Standard Evolution (ISE) process.
+
+Changes to recovery procedures shall be based on validated operational experience and approved before becoming part of the Recovery Manual standard.
 
 ---
 
