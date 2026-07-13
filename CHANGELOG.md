@@ -24,30 +24,22 @@ This project follows the principles of **Semantic Versioning (SemVer)** and **Ke
 
 ### Added
 
-- Introduced the Recovery Point Standard v1.0.0.
+- Established the Backup, Restore, and Recovery Framework.
+- Implemented the Recovery Point Standard v1.0.0.
+- Created the System Recovery Manual (SRM-1.0.0).
+- Created the System Recovery Runbook (SRB-1.0.0).
+- Created standardized procedures for GitHub, Docker, Proxmox, Offsite, and Disaster Recovery.
+- Created the Restore Procedures index.
 - Created the first standardized Recovery Point (`RP-20260711-001`).
-- Established the Recovery Point directory structure.
-- Added `RP_MANIFEST.md`.
-- Added `verification.log`.
-- Added `SYSTEM_RECOVERY_MANUAL.md`.
-- Added `checksums.sha256` verification workflow.
-- Added Proxmox VM backup integration into the Recovery Point standard.
-- Added `RP_NOTES.md` for Recovery Point-specific operational notes.
-- Added `RP-YYYYMMDD-000` Recovery Point template.
-
-### Standardized
-
-- Recovery Point header format.
-- Recovery Point verification workflow.
-- Docker backup organization.
-- Proxmox backup documentation and verification.
-- Backup Type metadata for Recovery Points.
-- SHA-256 verification process.
+- Added Recovery Point templates and verification templates.
+- Implemented Recovery Point verification using SHA-256 checksums.
+- Integrated Proxmox VM backup documentation into the Recovery Point standard.
 
 ### Completed
 
-- Recovery Point `RP-20260711-001`.
-- Recovery Point Standard v1.0.0 baseline implementation.
+- Completed Backup, Restore, and Recovery documentation for Milestone v0.6.0.
+- Completed Recovery Point `RP-20260711-001`.
+- Completed the initial Backup, Restore, and Recovery operational standard.
 
 ---
 
