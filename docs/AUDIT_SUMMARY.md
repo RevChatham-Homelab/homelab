@@ -16,7 +16,7 @@
 | Portainer | v1.0.0 | ✅ Passed |
 | Nginx Proxy Manager | v1.0.0 | ✅ Passed |
 | Uptime Kuma | v1.0.0 | ✅ Passed |
-| Website | v1.0.0 | ✅ Passed |
+| Website | — | 🚧 In Progress |
 
 ---
 

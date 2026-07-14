@@ -7,6 +7,9 @@ services:
     env_file:
       - .env
 
+    networks:
+      - homelab
+
     ports:
       - "${PORTAINER_EDGE_PORT}:8000"
       - "${PORTAINER_HTTPS_PORT}:9443"

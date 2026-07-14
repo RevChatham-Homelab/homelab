@@ -29,6 +29,7 @@ Every service is deployed using Docker, documented, audited, and version control
 | Prometheus | Metrics Collection | ✅ |
 | Uptime Kuma | Service Monitoring | ✅ |
 | Nginx Proxy Manager | Reverse Proxy | ✅ |
+| Portainer | Docker Management | ✅ |
 | Portfolio Website | Personal Website | 🚧 |
 
 ---
