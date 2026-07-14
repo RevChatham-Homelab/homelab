@@ -3,14 +3,9 @@ services:
     image: ${PORTAINER_IMAGE}:${PORTAINER_TAG}
     container_name: portainer
     restart: unless-stopped
-    networks:
-      - homelab
 
     env_file:
       - .env
-
-    networks:
-      - homelab
 
     ports:
       - "${PORTAINER_EDGE_PORT}:8000"

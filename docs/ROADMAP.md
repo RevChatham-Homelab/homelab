@@ -6,7 +6,7 @@
 
 # Vision
 
-Build and maintain a production-inspired homelab that demonstrates practical experience with Linux administration, Docker, networking, reverse proxies, identity management, monitoring, documentation, and security.
+Build and maintain a production-inspired homelab that demonstrates practical experience with Linux administration, Docker, networking, reverse proxies, identity management, monitoring, documentation, backup and recovery, and infrastructure security.
 
 The homelab serves three primary purposes:
 
@@ -16,19 +16,29 @@ The homelab serves three primary purposes:
 
 ---
 
-# Project Phases
+# Completed Milestones
 
-## Phase 1 — Core Infrastructure ✅
+## v0.1.0 — Core Infrastructure
 
 ### Objectives
 
 - Install Proxmox
 - Configure networking
+- Deploy Ubuntu Server
 - Deploy Docker
-- Build Docker network
 - Configure Cloudflare Tunnel
 
-### Services
+**Status:** Complete
+
+---
+
+## v0.2.0 — Production Services
+
+### Objectives
+
+Deploy and validate production services.
+
+### Deliverables
 
 - Homepage
 - Pi-hole
@@ -44,84 +54,122 @@ The homelab serves three primary purposes:
 
 ---
 
-## Phase 2 — Service Audit & Standardization 🟡 (Current)
+## v0.3.0 — Repository Foundation
 
 ### Objectives
 
-- Audit every Docker stack
-- Review security
-- Remove secrets from Git
-- Create `.env.example`
-- Standardize compose files
-- Review Docker networking
-- Improve configuration consistency
+Establish repository structure and documentation standards.
+
+### Deliverables
+
+- GitHub repository
+- Documentation framework
+- Repository organization
+- Engineering standards
+
+**Status:** Complete
+
+---
+
+## v0.4.0 — Documentation Framework
+
+### Objectives
+
+Standardize service documentation.
+
+### Deliverables
+
+- README documentation
+- Environment standards
+- Audit templates
+- Service documentation
+
+**Status:** Complete
+
+---
+
+## v0.5.0 — Service Audit & Standardization
+
+### Objectives
+
+Audit every production service and standardize deployment documentation.
 
 ### Deliverables
 
 - Service audit reports
-- Updated `.gitignore`
-- Standardized environment files
+- Standardized `.gitignore`
+- Standardized `.env.example`
+- Standardized Docker Compose files
+- Configuration review
+
+**Status:** Complete
 
 ---
 
-## Phase 3 — Documentation
+## v0.6.0 — Backup, Restore, and Recovery Framework
 
 ### Objectives
 
-Create professional documentation for every service.
+Develop a complete operational recovery framework.
 
 ### Deliverables
 
-- README files
-- Service documentation
-- Deployment guides
-- Troubleshooting guides
-- Architecture documentation
-- Audit reports
+- Backup Strategy
+- Backup Inventory
+- Backup Schedule
+- Recovery Point Standard
+- System Recovery Manual
+- System Recovery Runbook
+- Disaster Recovery Procedure
+- Restore Procedures
+- GitHub Backup Procedure
+- Docker Backup Procedure
+- Proxmox Backup Procedure
+- Offsite Backup Procedure
+- Recovery Point `RP-20260711-001`
+
+**Status:** Complete
 
 ---
 
-## Phase 4 — Backup & Disaster Recovery
+# Current Milestone
+
+## v0.7.0 — Automation
 
 ### Objectives
 
-Develop a complete backup strategy.
+Reduce manual administration while preserving approved operational standards.
 
-### Deliverables
+### Planned Focus
 
-- Proxmox backups
-- Docker backups
-- Configuration backups
-- GitHub repository backup
-- Recovery documentation
+- Recovery Point automation
+- Backup automation
+- Verification automation
+- Repository quality assurance
+- Infrastructure validation scripting
+
+**Status:** Planned
 
 ---
 
-## Phase 5 — Security Hardening
+# Future Milestones
 
-### Objectives
+## Security Hardening
 
-Reduce attack surface and improve security.
+### Planned Focus
 
-### Tasks
-
-- Remove unnecessary exposed ports
-- Internal Docker networking
-- Reverse proxy only access
-- TLS improvements
-- Docker permission review
 - Secret management review
 - Container privilege review
+- Docker permission review
+- TLS improvements
+- Internal Docker networking
+- Reverse proxy only access
 
 ---
 
-## Phase 6 — Monitoring & Observability
+## Monitoring & Observability
 
-### Objectives
-
-Expand monitoring capabilities.
-
-### Planned Additions
+### Planned Focus
 
 - Additional Grafana dashboards
 - Alerting
@@ -130,35 +178,15 @@ Expand monitoring capabilities.
 
 ---
 
-## Phase 7 — Automation
+## Portfolio Enhancement
 
-### Objectives
+### Planned Focus
 
-Reduce manual administration.
-
-### Planned Additions
-
-- Update automation
-- Backup automation
-- Health monitoring
-- Scheduled maintenance
-
----
-
-## Phase 8 — Portfolio Enhancement
-
-### Objectives
-
-Transform the homelab into a polished portfolio project.
-
-### Deliverables
-
-- Public GitHub repository
 - Architecture diagrams
-- Screenshots
+- Infrastructure screenshots
 - Technical write-ups
 - Lessons learned
-- Troubleshooting documentation
+- Public project demonstrations
 
 ---
 
@@ -192,27 +220,37 @@ Transform the homelab into a polished portfolio project.
 
 ---
 
-# Current Focus
+## Portfolio Website
 
-**Phase 2 — Service Audit & Standardization**
+### Planned Focus
 
-Current Service:
+Develop the public-facing RevChatham Homelab website as a professional IT portfolio.
 
-- Authentik
+The Portfolio Website is considered a separate initiative from the underlying infrastructure. Infrastructure readiness is validated through service audits, while website development focuses on content, presentation, and user experience.
 
-Next Service:
+### Planned Deliverables
 
-- Grafana
+- Homepage design
+- About page
+- Professional résumé
+- Homelab project portfolio
+- Architecture diagrams
+- Infrastructure screenshots
+- Technical write-ups
+- Lessons learned
+- Contact page
 
 ---
 
 # Success Criteria
 
-The project is considered complete when:
+The project continues to evolve through milestone-based development.
 
-- Every service has been audited.
-- Every service is documented.
-- Secrets are excluded from Git.
-- Backup strategy is implemented.
-- Security hardening is complete.
-- Portfolio documentation is published.
+Success is measured by:
+
+- Operationally validated infrastructure
+- Accurate and maintainable documentation
+- Verified backup and recovery capability
+- Secure, reproducible deployments
+- Continuous improvement through documented standards
+- Professional portfolio quality

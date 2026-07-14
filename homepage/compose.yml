@@ -1,13 +1,13 @@
 services:
   homepage:
-    image: ghcr.io/gethomepage/homepage:latest
+    image: ${HOMEPAGE_IMAGE}:${HOMEPAGE_TAG}
     container_name: homepage
     restart: unless-stopped
     networks:
       - homelab
 
     ports:
-      - "3000:3000"
+      - "${HOMEPAGE_PORT}:3000"
 
     volumes:
       - ./config:/app/config

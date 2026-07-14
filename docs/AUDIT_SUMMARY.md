@@ -4,48 +4,60 @@
 
 ---
 
-## Overall Status
+# Overall Status
 
 | Service | Version | Status |
 |----------|:------:|:------:|
-| Homepage | v1.0 | ✅ Passed |
-| Pi-hole | v1.0 | ✅ Passed |
-| Authentik | v1.0 | 🟡 In Progress |
-| Grafana | — | ⏳ Pending |
-| Prometheus | — | ⏳ Pending |
-| Nginx Proxy Manager | — | ⏳ Pending |
-| Uptime Kuma | — | ⏳ Pending |
-| Website | — | ⏳ Pending |
+| Homepage | v1.0.0 | ✅ Passed |
+| Pi-hole | v1.0.0 | ✅ Passed |
+| Authentik | v1.0.0 | ✅ Passed |
+| Grafana | v1.0.0 | ✅ Passed |
+| Prometheus | v1.0.0 | ✅ Passed |
+| Portainer | v1.0.0 | ✅ Passed |
+| Nginx Proxy Manager | v1.0.0 | ✅ Passed |
+| Uptime Kuma | v1.0.0 | ✅ Passed |
+| Website | v1.0.0 | ✅ Passed |
 
 ---
 
-# Current Objectives
+# Audit Summary
 
-- Standardize Docker Compose files.
-- Move configuration into `.env` files.
-- Create `.env.example` templates.
-- Remove secrets from Git.
-- Document every service.
-- Prepare repository for portfolio publication.
+Completed during Milestone **v0.5.0**:
+
+- Audited all production services.
+- Standardized Docker Compose files.
+- Standardized `.env.example` files.
+- Standardized service `README.md` documentation.
+- Standardized service `.gitignore` files.
+- Reviewed Docker networking.
+- Removed repository secrets.
+- Established repository documentation standards.
+
+Completed during Milestone **v0.6.0**:
+
+- Established the Backup, Restore, and Recovery Framework.
+- Implemented the Recovery Point Standard.
+- Created the System Recovery Manual.
+- Created the System Recovery Runbook.
+- Created Disaster Recovery procedures.
+- Created standardized backup procedures.
+- Validated Recovery Point `RP-20260711-001`.
 
 ---
 
-# Security Roadmap
+# Security Summary
 
-## Phase 1
+Current implementation includes:
 
-- Docker audit
-- Configuration audit
-- Documentation
-- GitHub preparation
+- Docker networking review
+- Environment variable standardization
+- Repository secret protection
+- Nginx Proxy Manager reverse proxy
+- Cloudflare Tunnel
+- Authentik Single Sign-On (SSO)
+- Recovery Point verification using SHA-256
 
-## Phase 2
-
-- Remove unnecessary exposed ports.
-- Route services through Nginx Proxy Manager.
-- Review Docker privileges.
-- Harden container networking.
-- Improve TLS configuration.
+Future security improvements will be tracked through future milestones.
 
 ---
 
@@ -53,14 +65,27 @@
 
 | Category | Status |
 |-----------|:------:|
-| Audits | 🟡 In Progress |
-| Architecture | ⏳ Pending |
-| Setup Guides | ⏳ Pending |
-| Troubleshooting | ⏳ Pending |
-| Backup Strategy | ⏳ Pending |
+| Service Audits | ✅ Complete |
+| Service Documentation | ✅ Complete |
+| Engineering Standards | ✅ Complete |
+| Backup, Restore, and Recovery | ✅ Complete |
+| Templates | ✅ Complete |
+| Troubleshooting | 🟡 Ongoing |
+| Architecture | 🟡 Ongoing |
 
 ---
 
-# Next Audit
+# Current Milestone
 
-Authentik
+**v0.7.0 — Automation**
+
+Primary objectives:
+
+- Recovery Point automation
+- Backup automation
+- Verification automation
+- Repository quality assurance
+
+---
+
+End of Audit Summary

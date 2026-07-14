@@ -3,7 +3,7 @@
 > A production-inspired homelab built to develop practical skills in Linux administration, Docker, networking, identity management, monitoring, documentation, and infrastructure security.
 
 ![Project Status](https://img.shields.io/badge/Status-Active-success)
-![Version](https://img.shields.io/badge/Version-v0.4.0-blue)
+![Version](https://img.shields.io/badge/Version-v0.6.0-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
@@ -78,22 +78,25 @@ Every service is deployed using Docker, documented, audited, and version control
 ```text
 homelab/
 ├── authentik/
-├── docs/
-│   ├── architecture/
-│   ├── audits/
-│   ├── backups/
-│   ├── decisions/
-│   ├── engineering/
-│   ├── setup/
-│   ├── templates/
-│   └── troubleshooting/
 ├── grafana/
 ├── homepage/
-│   └── config/
 ├── nginx-proxy-manager/
 ├── pihole/
 ├── portainer/
-└── prometheus/
+├── prometheus/
+├── uptime-kuma/
+├── website/
+├── docs/
+│   ├── audits/
+│   ├── BACKUP_RESTORE_RECOVER/
+│   ├── decisions/
+│   ├── draft_proposals/
+│   ├── engineering/
+│   ├── templates/
+│   └── troubleshooting/
+├── CHANGELOG.md
+├── LICENSE
+└── README.md
 ```
 
 ---
@@ -114,39 +117,52 @@ homelab/
 
 Detailed documentation is available in the `docs/` directory.
 
-- Project Roadmap
+- Backup, Restore, and Recovery Framework
+- Service Documentation
 - Service Audits
-- Setup Guides
-- Troubleshooting Notes
-- Backup Strategy
-- Architecture Documentation
+- Engineering Standards
+- Templates
+- Draft Proposals
+- Troubleshooting Documentation
+- Project Roadmap
 
 ---
 
-# Project Roadmap
+# Project Status
 
-Current Phase:
+Current Milestone:
 
-**Phase 2 – Service Audit & Standardization**
+**v0.6.0 — Backup, Restore, and Recovery Framework**
 
 Completed:
 
-- Core infrastructure deployment
-- Homepage audit
-- Pi-hole audit
-- Authentik audit
-- Documentation framework
-- GitHub repository setup
+- Production infrastructure deployment
+- Service documentation
+- Service audits
+- Backup Strategy
+- Backup Inventory
+- Backup Schedule
+- Recovery Point Standard
+- System Recovery Manual
+- System Recovery Runbook
+- Disaster Recovery Procedure
+- Restore Procedures
+- GitHub, Docker, Proxmox, and Offsite backup procedures
+- Recovery Point implementation (RP-20260711-001)
 
-# Upcoming
+---
 
-- Uptime Kuma audit
-- Backup strategy
-- Architecture diagrams
-- Security hardening
-- README v1.1 documentation pass
-- Audit v1.1 documentation pass
-- Architecture Decision Records
+# Next Milestone
+
+**v0.7.0 — Automation**
+
+Planned Focus:
+
+- Recovery Point automation
+- Backup automation
+- Verification automation
+- Repository quality assurance
+- Infrastructure validation scripting
 
 ---
 
@@ -160,6 +176,7 @@ This project follows several principles:
 - Version controlled infrastructure
 - Continuous improvement
 - Learn by building
+- Standards before automation
 
 ---
 
