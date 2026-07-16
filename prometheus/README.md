@@ -1,10 +1,16 @@
 # Prometheus
 
-**Project:** RevChatham Homelab  
-**Service:** Monitoring Stack  
-**Status:** Production  
-**Version:** 1.0.0  
-**Last Updated:** 2026-07-10
+**Project:** RevChatham Homelab
+
+**Service:** Prometheus
+
+**Document:** Service README
+
+**Document Version:** 1.0.0
+
+**Service Status:** Production
+
+**Last Reviewed:** 2026-07-16
 
 ---
 
@@ -139,4 +145,6 @@ docs/audits/prometheus.md
 
 ---
 
-README Template v1.0
+Prometheus README
+
+Document Version 1.0.0

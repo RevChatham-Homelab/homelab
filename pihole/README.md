@@ -1,10 +1,16 @@
 # Pi-hole
 
-**Project:** RevChatham Homelab  
-**Service:** Network DNS Filtering  
-**Status:** Production  
-**Version:** 1.0.0  
-**Last Updated:** 2026-07-08
+**Project:** RevChatham Homelab
+
+**Service:** Pi-hole
+
+**Document:** Service README
+
+**Document Version:** 1.0.0
+
+**Service Status:** Production
+
+**Last Reviewed:** 2026-07-16
 
 ---
 
@@ -128,4 +134,6 @@ docs/audits/pihole.md
 
 ---
 
-README Template v1.0
+Pi-hole README
+
+Document Version 1.0.0

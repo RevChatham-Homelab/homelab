@@ -1,10 +1,16 @@
 # Portainer
 
-**Project:** RevChatham Homelab  
-**Service:** Container Management  
-**Status:** Production  
-**Version:** 1.0.0  
-**Last Updated:** 2026-07-09
+**Project:** RevChatham Homelab
+
+**Service:** Portainer
+
+**Document:** Service README
+
+**Document Version:** 1.0.0
+
+**Service Status:** Production
+
+**Last Reviewed:** 2026-07-16
 
 ---
 
@@ -146,4 +152,6 @@ docs/incidents/2026-07-09/001_portainer-compose-migration/INCIDENT_REPORT.md
 
 ---
 
-README Template v1.0
+Portainer README
+
+Document Version 1.0.0

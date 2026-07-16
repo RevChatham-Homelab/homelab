@@ -4,11 +4,13 @@
 
 **Service:** Uptime Kuma
 
-**Status:** Production
+**Document:** Service README
 
-**Version:** 2.4.0
+**Document Version:** 1.0.0
 
-**Last Updated:** 2026-07-10
+**Service Status:** Production
+
+**Last Reviewed:** 2026-07-16
 
 ---
 
@@ -167,4 +169,6 @@ data-backup-*/
 
 ---
 
-README Template v1.0
+Uptime Kuma README
+
+Document Version 1.0.0

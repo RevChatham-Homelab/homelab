@@ -1,10 +1,16 @@
 # Grafana
 
-**Project:** RevChatham Homelab  
-**Service:** Monitoring & Visualization Platform  
-**Status:** Production  
-**Version:** 1.0.0  
-**Last Updated:** 2026-07-08
+**Project:** RevChatham Homelab
+
+**Service:** Grafana
+
+**Document:** Service README
+
+**Document Version:** 1.0.0
+
+**Service Status:** Production
+
+**Last Reviewed:** 2026-07-16
 
 ---
 
@@ -129,4 +135,6 @@ docs/audits/grafana.md
 
 ---
 
-README Template v1.0
+Grafana README
+
+Document Version 1.0.0

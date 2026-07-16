@@ -1,10 +1,16 @@
 # Authentik
 
-**Project:** RevChatham Homelab  
-**Service:** Identity Provider (IdP)  
-**Status:** Production  
-**Version:** 1.0.0  
-**Last Updated:** 2026-07-10
+**Project:** RevChatham Homelab
+
+**Service:** Authentik
+
+**Document:** Service README
+
+**Document Version:** 1.0.0
+
+**Service Status:** Production
+
+**Last Reviewed:** 2026-07-16
 
 ---
 
@@ -151,4 +157,6 @@ docs/audits/authentik.md
 
 ---
 
-README Template v1.0
+Authentik README
+
+Document Version 1.0.0

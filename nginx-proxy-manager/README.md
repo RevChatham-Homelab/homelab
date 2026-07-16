@@ -1,10 +1,16 @@
 # Nginx Proxy Manager
 
-**Project:** RevChatham Homelab  
-**Service:** Reverse Proxy  
-**Status:** Production  
-**Version:** 1.0.0  
-**Last Updated:** 2026-07-10
+**Project:** RevChatham Homelab
+
+**Service:** Nginx Proxy Manager
+
+**Document:** Service README
+
+**Document Version:** 1.0.0
+
+**Service Status:** Production
+
+**Last Reviewed:** 2026-07-16
 
 ---
 
@@ -162,4 +168,6 @@ letsencrypt/
 
 ---
 
-README Template v1.0
+Nginx Proxy Manager README
+
+Document Version 1.0.0
