@@ -1,10 +1,14 @@
-# Pi-hole Service Audit
+# Pi-hole Audit
 
-**Project:** RevChatham Homelab  
-**Service:** Pi-hole  
-**Audit Version:** 1.0.0  
-**Audit Date:** 2026-07-10  
-**Status:** 🟢 Passed
+**Project:** RevChatham Homelab
+
+**Document:** Pi-hole Audit
+
+**Document Version:** 1.0.0
+
+**Last Reviewed:** 2026-07-15
+
+**Status:** Operational
 
 ---
 
@@ -166,4 +170,4 @@ The service is operational and provides network-wide DNS filtering and advertise
 
 ---
 
-Audit Template v1.0
+Pi-hole Audit v1.0.0

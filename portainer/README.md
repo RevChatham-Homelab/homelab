@@ -141,7 +141,7 @@ docs/audits/portainer.md
 Migration from Docker Run to Docker Compose:
 
 ```text
-docs/troubleshooting/2026_07_09_portainer_docker_run_to_compose_migration.md
+docs/incidents/2026-07-09/001_portainer-compose-migration/INCIDENT_REPORT.md
 ```
 
 ---

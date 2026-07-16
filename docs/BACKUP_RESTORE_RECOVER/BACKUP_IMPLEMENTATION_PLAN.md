@@ -158,4 +158,4 @@ The implementation is considered successful when:
 
 ---
 
-Backup Implementation Plan | Version 1.0.0
+Backup Implementation Plan v1.0.0

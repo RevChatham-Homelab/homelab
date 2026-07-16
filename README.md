@@ -118,7 +118,7 @@ homelab/
 │   ├── draft_proposals/
 │   ├── engineering/
 │   ├── templates/
-│   └── troubleshooting/
+│   └── incidents/
 ├── CHANGELOG.md
 ├── LICENSE
 └── README.md
@@ -148,7 +148,7 @@ Detailed documentation is available in the `docs/` directory.
 - Engineering Standards
 - Templates
 - Draft Proposals
-- Troubleshooting Documentation
+- Incident Documentation
 - Project Roadmap
 
 ---
@@ -209,10 +209,10 @@ This project follows several principles:
 
 One of the primary goals of this homelab is documenting not only successful deployments, but also troubleshooting steps, design decisions, and lessons learned along the way.
 
-Troubleshooting documentation is stored in:
+Incident documentation is stored in:
 
 ```text
-docs/troubleshooting/
+docs/incidents/
 
 ```
 

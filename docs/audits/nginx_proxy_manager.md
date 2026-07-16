@@ -1,10 +1,14 @@
-# Nginx Proxy Manager Service Audit
+# Nginx Proxy Manager Audit
 
 **Project:** RevChatham Homelab
-**Service:** Nginx Proxy Manager
-**Audit Version:** 1.0.0
-**Audit Date:** 2026-07-10
-**Status:** 🟢 Passed
+
+**Document:** Nginx Proxy Manager Audit
+
+**Document Version:** 1.0.0
+
+**Last Reviewed:** 2026-07-15
+
+**Status:** Operational
 
 ---
 
@@ -166,4 +170,4 @@ Nginx Proxy Manager meets the current RevChatham Homelab deployment standard and
 
 ---
 
-Audit Template v1.0
+Nginx Proxy Manager Audit v1.0.0

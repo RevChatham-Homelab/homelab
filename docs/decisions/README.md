@@ -1,5 +1,17 @@
 # Architecture Decisions
 
+**Project:** RevChatham Homelab
+
+**Directory:** Decisions
+
+**Document Version:** 1.0.0
+
+**Last Reviewed:** 2026-07-15
+
+**Status:** Operational
+
+---
+
 ## Purpose
 
 This directory contains Architecture Decision Records (ADRs) for the homelab.
@@ -41,7 +53,7 @@ Examples include:
 - Storage architecture
 - Virtualization platform choices
 
-Routine maintenance, troubleshooting, or bug fixes should be documented in the **Troubleshooting** directory instead.
+Routine maintenance, troubleshooting, or bug fixes should be documented in the **Incidents** directory instead.
 
 ---
 
@@ -100,7 +112,7 @@ Poor examples:
 - Restarting a service.
 - Correcting a configuration typo.
 
-Those belong in the **Troubleshooting** documentation.
+Those belong in the **Incidents** documentation.
 
 ---
 
@@ -114,7 +126,7 @@ This repository is organized so each type of documentation serves a specific pur
 | `configuration/` | Application configuration references and standards. |
 | `decisions/` | Why architectural choices were made. |
 | `deployment/` | Installation and deployment procedures. |
-| `troubleshooting/` | Problems encountered and how they were resolved. |
+| `incidents/` | Incident records, troubleshooting investigations, resolutions, and lessons learned. |
 
 Together, these documents provide a complete picture of both the implementation and the reasoning behind the homelab.
 
@@ -125,3 +137,7 @@ Together, these documents provide a complete picture of both the implementation 
 Decision records are intended to evolve as the homelab evolves.
 
 If a future decision replaces an earlier one, create a new decision record explaining the change rather than modifying the historical record. This preserves the architectural history of the project and documents how the environment has matured over time.
+
+---
+
+Architecture Decisions Directory README v1.0.0

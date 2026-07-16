@@ -108,7 +108,7 @@ Examples:
 
 - Engineering
 - Templates
-- Troubleshooting
+- Incidents
 - Decisions
 
 ---

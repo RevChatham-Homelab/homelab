@@ -1,5 +1,17 @@
 # Documentation Summary
 
+**Project:** RevChatham Homelab
+
+**Document:** Documentation Summary
+
+**Document Version:** 1.0.0
+
+**Last Reviewed:** 2026-07-15
+
+**Status:** Operational
+
+---
+
 This directory contains the documentation for the RevChatham Homelab.
 
 The documentation is organized by category to simplify navigation, maintenance, standardization, and long-term project management.
@@ -38,7 +50,7 @@ Installation, deployment, and initial configuration guides.
 
 Project documentation standards, approved templates, and documentation specifications used throughout the repository.
 
-## Troubleshooting
+## Incidents
 
 Resolved issues, troubleshooting procedures, operational knowledge, and lessons learned.
 
@@ -52,4 +64,4 @@ A high-level summary of the current audit status for all production services.
 
 ---
 
-Documentation Summary v1.0
+Documentation Summary v1.0.0

@@ -130,5 +130,6 @@ Reference
 
 SYSTEM_RECOVERY_RUNBOOK.md
 
+---
 
-Disaster Recovery v1.0.0
+Disaster Recovery Procedure v1.0.0

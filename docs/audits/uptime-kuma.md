@@ -1,4 +1,16 @@
-# Uptime Kuma Service Audit
+# Uptime Kuma Audit
+
+**Project:** RevChatham Homelab
+
+**Document:** Uptime Kuma Audit
+
+**Document Version:** 1.0.0
+
+**Last Reviewed:** 2026-07-15
+
+**Status:** Operational
+
+---
 
 # Executive Summary
 
@@ -165,4 +177,4 @@ Uptime Kuma meets the current RevChatham Homelab deployment standard and require
 
 ---
 
-Audit Template v1.0
+Uptime-Kuma Audit v1.0.0
