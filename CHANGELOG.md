@@ -31,6 +31,24 @@ This project follows the principles of **Semantic Versioning (SemVer)** and **Ke
 
 ---
 
+## [0.6.1] - 2026-07-16
+
+### Added
+
+- Created the Incident Documentation Framework.
+- Added `INCIDENT_REPORT_STANDARD.md`.
+- Added `INCIDENT_REPORT_TEMPLATE.md`.
+- Added the `docs/incidents/` documentation hierarchy.
+- Introduced standardized Incident IDs using the `IR-YYYYMMDD-###` format.
+
+### Changed
+
+- Renamed the `docs/troubleshooting/` directory to `docs/incidents/`.
+- Standardized historical incident reports to the Incident Report Standard.
+- Standardized repository headers and footers across governance and recovery documentation.
+- Updated repository documentation to reference the Incident Documentation framework.
+- Refined documentation governance by separating standards from templates.
+
 ## [0.6.0] - 2026-07-13
 
 ### Added
