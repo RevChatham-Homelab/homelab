@@ -1,26 +1,25 @@
-# RevChatham Homelab
-
 # System Recovery Runbook
 
-Recovery Runbook ID:
-SRB-1.0.0
+**Project:** RevChatham Homelab
 
-Document Version:
-1.0.0
+**Document:** System Recovery Runbook
 
-Status:
-Operational
+**Recovery Runbook ID:** SRB-1.0.0
 
-==================================================
+**Document Version:** 1.0.0
 
-THIS DOCUMENT IS USED DURING AN ACTIVE SYSTEM
-RECOVERY EVENT.
+**Last Reviewed:** 2026-07-15
 
-For recovery procedures, see:
+**Status:** Operational
 
-SYSTEM_RECOVERY_MANUAL.md
+---
 
-==================================================
+> [!IMPORTANT]
+> This document is intended for use during an active system recovery event.
+>
+> For detailed recovery procedures and supporting information, refer to:
+>
+> **SYSTEM_RECOVERY_MANUAL.md**
 
 ---
 
@@ -337,3 +336,10 @@ ____________________________________________________
 ____________________________________________________
 
 (Continue as required by the System Recovery Manual if additional recovery tasks are necessary.)
+
+
+---
+
+System Recovery Runbook v1.0.0
+
+Recovery Runbook ID: SRB-1.0.0

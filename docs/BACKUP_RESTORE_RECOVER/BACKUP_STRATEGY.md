@@ -1,10 +1,14 @@
 # Backup Strategy
 
 **Project:** RevChatham Homelab
+
 **Document:** Backup Strategy
-**Version:** 1.0.0
-**Approved:** 2026-07-11
-**Status:** Approved Standard
+
+**Document Version:** 1.0.0
+
+**Last Reviewed:** 2026-07-15
+
+**Status:** Operational
 
 ---
 

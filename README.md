@@ -1,5 +1,17 @@
 # RevChatham Homelab
 
+**Project:** RevChatham Homelab
+
+**Document:** Repository README
+
+**Document Version:** 1.0.0
+
+**Last Reviewed:** 2026-07-15
+
+**Status:** Operational
+
+---
+
 > A production-inspired homelab built to develop practical skills in Linux administration, Docker, networking, identity management, monitoring, documentation, and infrastructure security.
 
 ![Project Status](https://img.shields.io/badge/Status-Active-success)
@@ -15,6 +27,18 @@ This repository documents the design, deployment, maintenance, and continuous im
 The project was created to gain hands-on experience with technologies commonly used in IT Operations, Systems Administration, DevOps, and Cybersecurity while building a professional portfolio of real-world infrastructure projects.
 
 Every service is deployed using Docker, documented, audited, and version controlled to mirror professional infrastructure management practices.
+
+---
+
+# Project Philosophy
+
+The RevChatham Homelab is guided by a documented engineering philosophy that emphasizes accuracy, verification, continuous improvement, and practical engineering experience.
+
+The philosophy defines the principles used when making technical, documentation, and project governance decisions.
+
+See:
+
+- `DESIGN_PHILOSOPHY.md`
 
 ---
 
@@ -199,3 +223,6 @@ docs/troubleshooting/
 This project is licensed under the MIT License.
 
 See the `LICENSE` file for details.
+
+
+Repository README v1.0.0

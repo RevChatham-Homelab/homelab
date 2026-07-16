@@ -26,4 +26,6 @@ Deployment
 
 Documentation
 
-README Template v1.0
+---
+
+Templates Directory README v1.0.0

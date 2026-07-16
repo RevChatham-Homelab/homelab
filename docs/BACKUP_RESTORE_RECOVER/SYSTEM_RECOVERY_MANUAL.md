@@ -106,6 +106,6 @@ Changes to recovery procedures shall be based on validated operational experienc
 
 ---
 
-End of System Recovery Manual
+System Recovery Manual v1.0.0
 
 Recovery Manual ID: SRM-1.0.0

@@ -137,4 +137,4 @@ Recovery is complete when:
 
 ---
 
-End of GitHub Backup Procedure
+GitHub Backup Procedure v1.0.0

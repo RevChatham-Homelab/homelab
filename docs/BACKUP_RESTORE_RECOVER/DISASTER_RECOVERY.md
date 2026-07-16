@@ -1,12 +1,14 @@
-# RevChatham Homelab
-
 # Disaster Recovery Procedure
 
-Document Version:
-1.0.0
+**Project:** RevChatham Homelab
 
-Status:
-Operational
+**Document:** Disaster Recovery Procedure
+
+**Document Version:** 1.0.0
+
+**Last Reviewed:** 2026-07-15
+
+**Status:** Operational
 
 ---
 
@@ -127,3 +129,6 @@ Completion Criteria
 Reference
 
 SYSTEM_RECOVERY_RUNBOOK.md
+
+
+Disaster Recovery v1.0.0

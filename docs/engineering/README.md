@@ -1,104 +1,102 @@
-# Engineering Backlog
+# Engineering Documentation
 
-## Purpose
+**Project:** RevChatham Homelab
 
-This document tracks improvements, refactors, and enhancements that have been intentionally deferred until after the homelab reaches a stable, production-ready state.
+**Directory:** Engineering
 
-The priority is:
+**Document Version:** 1.0.0
 
-1. Functional infrastructure
-2. Stable infrastructure
-3. Documentation improvements
-4. Cosmetic improvements
+**Last Reviewed:** 2026-07-15
 
----
-
-# Documentation
-
-## README v1.1
-
-Status: Deferred
-
-### Planned Improvements
-
-- Standardize README layout across all applications.
-- Add repository version information.
-- Add a "Last Updated" field.
-- Add a "Documentation Version" field.
-- Add Docker Volume section.
-- Add Repository Files section.
-- Add Integration section.
-- Add Related Documentation section.
-- Remove hardcoded image versions.
-- Improve Markdown formatting consistency.
+**Status:** Operational
 
 ---
 
-# Repository
+# Purpose
 
-Status: Deferred
+The Engineering directory contains the governance documentation used to plan, manage, review, and continuously improve the RevChatham Homelab.
 
-- Standardize repository structure
-- Create README template
-- Create troubleshooting template
-- Create deployment template
+These documents define **how the project is engineered**, rather than how individual services are deployed or configured.
 
 ---
 
-# Architecture
+# Directory Structure
 
-Status: Deferred
+| Directory | Purpose |
+|-----------|---------|
+| `charters/` | Milestone planning, objectives, deliverables, and completion criteria. |
+| `registers/` | Long-term engineering registers, including the Project Improvement Register (PIR). |
 
-- Create architecture diagrams
-- Create Docker network diagrams
-- Create authentication flow diagrams
-- Create reverse proxy diagrams
-
----
-
-# Automation
-
-Status: Deferred
-
-- Automated backups
-- GitHub Actions
-- Compose validation
-- Linting
-- Documentation validation
+Additional engineering documentation may be added as the project evolves.
 
 ---
 
-# Monitoring
+# Engineering Philosophy
 
-Status: Deferred
+The RevChatham Homelab is managed using an engineering-first approach.
 
-- Additional Grafana dashboards
-- Alerting
-- Metrics improvements
+Core principles include:
 
----
-
-# Website
-
-Status: Deferred
-
-- UI improvements
-- Theme updates
-- Portfolio polish
+- Accuracy before presentation.
+- Standards before implementation.
+- Documentation before optimization.
+- Verification before completion.
+- Continuous improvement through structured change management.
 
 ---
 
-# Future cleanup
+# Engineering Workflow
 
-Review whether all public subdomains should be managed through Nginx Proxy Manager or Cloudflare Tunnel directly.
-Review old portainer.local proxy host.
+Engineering work follows a controlled lifecycle.
+
+```text
+Idea
+    │
+    ▼
+Draft Proposal
+    │
+    ▼
+Engineering Review
+    │
+    ▼
+Project Improvement Register (PIR)
+    │
+    ▼
+Milestone Charter
+    │
+    ▼
+Implementation
+    │
+    ▼
+Repository Audit
+    │
+    ▼
+CHANGELOG
+```
 
 ---
 
-# General Improvements
+# Relationship to Other Documentation
 
-Status: Deferred
+| Document | Purpose |
+|----------|---------|
+| `ROADMAP.md` | Defines the long-term direction of the project. |
+| `draft_proposals/` | Records ideas awaiting engineering review. |
+| `engineering/registers/PROJECT_IMPROVEMENT_REGISTER.md` | Tracks approved project improvements. |
+| `engineering/charters/` | Defines the scope and objectives of individual milestones. |
+| `CHANGELOG.md` | Records completed work and milestone history. |
 
-- Repository cleanup
-- Naming consistency review
-- Documentation v2.0
+---
+
+# Governance
+
+Engineering documentation is reviewed:
+
+- At the beginning of each milestone.
+- During repository engineering reviews.
+- Before major version releases.
+- Whenever new engineering practices are adopted.
+
+---
+
+Engineering Directory README v1.0.0

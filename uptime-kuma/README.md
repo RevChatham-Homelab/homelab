@@ -1,7 +1,5 @@
 # Uptime Kuma
 
-## Service Name
-
 **Project:** RevChatham Homelab
 
 **Service:** Uptime Kuma

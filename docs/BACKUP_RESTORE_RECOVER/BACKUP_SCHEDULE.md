@@ -1,9 +1,14 @@
 # Backup Schedule
 
 **Project:** RevChatham Homelab
+
 **Document:** Backup Schedule
-**Version:** 1.0.0
-**Status:** To Be Determined
+
+**Document Version:** 1.0.0
+
+**Last Reviewed:** 2026-07-15
+
+**Status:** Operational
 
 ---
 

@@ -1,5 +1,17 @@
 # Changelog
 
+**Project:** RevChatham Homelab
+
+**Document:** Project Changelog
+
+**Document Version:** 1.0.0
+
+**Last Reviewed:** 2026-07-15
+
+**Status:** Operational
+
+---
+
 All notable changes to the **RevChatham Homelab** project are documented here.
 
 This project follows the principles of **Semantic Versioning (SemVer)** and **Keep a Changelog**.
@@ -134,3 +146,6 @@ This project follows the principles of **Semantic Versioning (SemVer)** and **Ke
 - Proxmox VE
 - Ubuntu Server VM
 - Initial networking
+
+
+Project Changelog v1.0.0

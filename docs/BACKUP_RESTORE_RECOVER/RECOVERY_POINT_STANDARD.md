@@ -1,10 +1,14 @@
 # Recovery Point Standard
 
 **Project:** RevChatham Homelab
+
 **Document:** Recovery Point Standard
-**Version:** 1.0.0
-**Approved:** 2026-07-11
-**Status:** Approved Standard
+
+**Document Version:** 1.0.0
+
+**Last Reviewed:** 2026-07-15
+
+**Status:** Operational
 
 ---
 

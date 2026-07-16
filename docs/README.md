@@ -1,4 +1,16 @@
-# Homelab Documentation
+# Documentation Overview
+
+**Project:** RevChatham Homelab
+
+**Document:** Documentation Overview
+
+**Document Version:** 1.0.0
+
+**Last Reviewed:** 2026-07-15
+
+**Status:** Operational
+
+---
 
 Welcome to the documentation for the RevChatham Homelab.
 
@@ -69,3 +81,7 @@ Documentation standards are versioned using Semantic Versioning (SemVer) and evo
 All proposed documentation changes are evaluated through the Independent Standard Evolution (ISE) process before becoming an approved standard.
 
 Approved revisions are documented through the project's change management process and reflected in the appropriate milestone.
+
+---
+
+Documentation Overview v1.0.0

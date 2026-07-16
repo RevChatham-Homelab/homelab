@@ -170,4 +170,4 @@ Recovery is complete when:
 
 ---
 
-End of Docker Backup Procedure
+Docker Backup Procedure v1.0.0

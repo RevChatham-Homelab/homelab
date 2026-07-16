@@ -1,0 +1,343 @@
+Markdown Header and Footer Audit
+Repository: /home/angel/homelab
+Generated: 2026-07-15 20:24:47 UTC
+
+REVIEW: authentik/README.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: CHANGELOG.md
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/audits/authentik.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/audits/grafana.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/audits/homepage.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/audits/nginx_proxy_manager.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/audits/pihole.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/audits/portainer.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/audits/prometheus.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/AUDIT_SUMMARY.md
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/audits/uptime-kuma.md
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/BACKUP_RESTORE_RECOVER/BACKUP_INVENTORY.md
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/BACKUP_RESTORE_RECOVER/BACKUP_SCHEDULE.md
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/BACKUP_RESTORE_RECOVER/BACKUP_STRATEGY.md
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/BACKUP_RESTORE_RECOVER/DISASTER_RECOVERY.md
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/BACKUP_RESTORE_RECOVER/DOCKER_BACKUP.md
+  - standard footer
+
+REVIEW: docs/BACKUP_RESTORE_RECOVER/GITHUB_BACKUP.md
+  - standard footer
+
+REVIEW: docs/BACKUP_RESTORE_RECOVER/OFFSITE_BACKUP.md
+  - standard footer
+
+REVIEW: docs/BACKUP_RESTORE_RECOVER/PROXMOX_BACKUP.md
+  - standard footer
+
+REVIEW: docs/BACKUP_RESTORE_RECOVER/RECOVERY_POINT_STANDARD.md
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/BACKUP_RESTORE_RECOVER/RESTORE_PROCEDURES.md
+  - standard footer
+
+REVIEW: docs/BACKUP_RESTORE_RECOVER/SYSTEM_RECOVERY_MANUAL.md
+  - standard footer
+
+REVIEW: docs/BACKUP_RESTORE_RECOVER/SYSTEM_RECOVERY_RUNBOOK.md
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/decisions/README.md
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/DOC_SUMMARY.md
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/draft_proposals/AUDIT_TEMPLATE_v1.0.1.md
+  - document title
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/draft_proposals/BACKUP_STRATEGY_v1.0.1.md
+  - document title
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/draft_proposals/DOCUMENTATION_STANDARD_v1.0.1.md
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/draft_proposals/ENVIRONMENT_STANDARD_v1.0.1.md
+  - document title
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/draft_proposals/README_TEMPLATE_v1.0.1.md
+  - document title
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/engineering/charters/MILESTONE_CHARTER_v0.7.0.md
+  - Document
+  - Status
+  - standard footer
+
+REVIEW: docs/engineering/charters/README.md
+  - Document
+  - Document Version
+  - standard footer
+
+REVIEW: docs/engineering/ENGINEERING_PRINCIPLES.md
+  - standard footer
+
+REVIEW: docs/engineering/README.md
+  - Document
+  - Document Version
+  - standard footer
+
+REVIEW: docs/engineering/registers/PROJECT_IMPROVEMENT_REGISTER.md
+  - standard footer
+
+REVIEW: docs/engineering/registers/README.md
+  - Document
+  - Document Version
+  - standard footer
+
+REVIEW: docs/README.md
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/ROADMAP.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/templates/ENVIRONMENT_STANDARD.md
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/templates/SERVICE_REVIEW_CHECKLIST.md
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/troubleshooting/2026_07_09_portainer_docker_run_to_compose_migration.md
+  - Document
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/troubleshooting/2026_07_09_proxmox_authentik_oidc_redirect_uri_mismatch.md
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/troubleshooting/2026_07_09_uptime_kuma_portainer_internal_monitor.md
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: docs/troubleshooting/2026-07-14_GITHUB_AUDIT_SYNCHRONIZATION.md
+  - document title
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: grafana/README.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: homepage/README.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: nginx-proxy-manager/README.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: pihole/README.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: portainer/README.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: prometheus/README.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: README.md
+  - Project
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
+REVIEW: uptime-kuma/README.md
+  - Document
+  - Document Version
+  - Last Reviewed
+  - Status
+  - standard footer
+
