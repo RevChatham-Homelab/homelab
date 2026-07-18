@@ -1,0 +1,30 @@
+# Recovery Point verification log example
+#
+# This file is a placeholder that demonstrates the generated output expected
+# after a Recovery Point verification process.
+#
+# The verification automation creates the real file as:
+#
+#   verification.log
+#
+# Expected log entries may include:
+#
+# - Recovery Point ID
+# - Verification start and completion timestamps
+# - Required-file checks
+# - Directory-structure checks
+# - Checksum validation results
+# - Archive integrity results
+# - Warnings or failures
+# - Final verification status
+#
+# Example output:
+#
+# 2026-07-17 22:30:00 [INFO] Verification started for RP-20260717-001
+# 2026-07-17 22:30:00 [PASS] Required file found: RP_MANIFEST.md
+# 2026-07-17 22:30:00 [PASS] Required file found: SYSTEM_RECOVERY_MANUAL.md
+# 2026-07-17 22:30:01 [PASS] SHA-256 checksum validation completed
+# 2026-07-17 22:30:01 [INFO] Verification status: COMPLETE
+#
+# This example is documentation only and is not evidence that a Recovery Point
+# has been verified.

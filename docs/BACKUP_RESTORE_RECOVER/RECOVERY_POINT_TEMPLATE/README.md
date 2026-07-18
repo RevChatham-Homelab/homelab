@@ -30,13 +30,13 @@ RP-20260718-001
 RP-20260805-002
 ```
 
-The identifier:
+The Recovery Point Template permanently reserves the following identifier:
 
 ```text
 RP-YYYYMMDD-000
 ```
 
-is permanently reserved for the Recovery Point Template and shall never be used as an operational Recovery Point.
+This identifier shall never be assigned to an operational Recovery Point.
 
 ---
 

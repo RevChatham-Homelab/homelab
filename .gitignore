@@ -77,6 +77,8 @@ __pycache__/
 # Recovery and Backup Artifacts
 # =========================================================
 
+automation/recovery/output/
+
 Recovery_Points/
 *.tar.gz
 *.vma

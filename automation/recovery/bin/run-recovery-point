@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+#
+# ==============================================================================
+# RevChatham Homelab
+#
+# Recovery Automation
+# Executable: run-recovery-point
+# Version: 1.0.0
+#
+# Purpose:
+# Coordinates the Recovery Automation execution workflow.
+# ==============================================================================
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+RECOVERY_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+LIB_DIR="${RECOVERY_ROOT}/lib"
+
+source "${LIB_DIR}/initialize.sh"
+source "${LIB_DIR}/configuration.sh"
+source "${LIB_DIR}/logging.sh"
+source "${LIB_DIR}/recovery_point.sh"
+source "${LIB_DIR}/manifest.sh"
+source "${LIB_DIR}/documentation.sh"
+source "${LIB_DIR}/docker.sh"
+source "${LIB_DIR}/proxmox.sh"
+source "${LIB_DIR}/checksum.sh"
+source "${LIB_DIR}/verification.sh"
+
+main() {
+
+    echo "Starting Recovery Automation..."
+
+    initialize_recovery
+    load_configuration
+    create_recovery_point
+    create_execution_log
+    generate_manifest
+    backup_documentation
+    backup_docker
+    backup_proxmox
+    generate_checksums
+    generate_verification
+    finalize_manifest
+
+    log_message "Recovery Automation initialized successfully."
+
+    echo "Recovery Automation initialization completed."
+
+    return 0
+}
+
+main "$@"

@@ -1,0 +1,20 @@
+# Recovery Point checksum file example
+#
+# This file is a placeholder that demonstrates the generated output expected
+# in a completed Recovery Point.
+#
+# The Recovery Point automation creates the real file as:
+#
+#   checksums.sha256
+#
+# Each generated line contains:
+#
+#   <SHA-256 checksum>  <relative file path>
+#
+# Example:
+#
+# d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2  ./RP_MANIFEST.md
+# a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1  ./SYSTEM_RECOVERY_MANUAL.md
+#
+# Do not use the example checksum values for verification.
+# The real values are generated from the files contained in the Recovery Point.
