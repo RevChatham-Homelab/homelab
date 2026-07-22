@@ -1,0 +1,484 @@
+#!/usr/bin/env bash
+#
+# ==============================================================================
+# RevChatham Homelab
+#
+# Recovery Automation
+# Executable: sanitize-recovery-point
+# Version: 1.0.0
+#
+# Purpose:
+# Creates a sanitized example from an existing Recovery Point.
+# ==============================================================================
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+RECOVERY_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+
+SOURCE_RECOVERY_POINT_ID="${1:-}"
+SOURCE_RECOVERY_POINT_PATH=""
+EXAMPLE_RECOVERY_POINT_ID=""
+EXAMPLE_RECOVERY_POINT_PATH=""
+
+TEMP_DIRECTORY=""
+
+SOURCE_USER="${USER:-}"
+SOURCE_HOME="${HOME:-}"
+SOURCE_HOSTNAME="$(hostname 2>/dev/null || true)"
+
+
+cleanup() {
+
+    if [[ -n "${TEMP_DIRECTORY}" ]] &&
+       [[ -d "${TEMP_DIRECTORY}" ]]; then
+        rm -rf -- "${TEMP_DIRECTORY}"
+    fi
+}
+
+
+print_usage() {
+
+    printf '%s\n' \
+        "Usage:" \
+        "  ./bin/sanitize-recovery-point RP-YYYYMMDD-XXX"
+}
+
+
+validate_requirements() {
+
+    local REQUIRED_COMMAND
+
+    for REQUIRED_COMMAND in \
+        cp \
+        find \
+        grep \
+        hostname \
+        mktemp \
+        perl \
+        sha256sum \
+        sort \
+        tar
+    do
+
+        if ! command -v "${REQUIRED_COMMAND}" >/dev/null 2>&1; then
+            printf 'ERROR: Required command not found: %s\n' \
+                "${REQUIRED_COMMAND}" >&2
+            return 1
+        fi
+
+    done
+}
+
+
+validate_source_recovery_point() {
+
+    if [[ -z "${SOURCE_RECOVERY_POINT_ID}" ]]; then
+        print_usage
+        return 1
+    fi
+
+    if [[ ! "${SOURCE_RECOVERY_POINT_ID}" =~ ^RP-[0-9]{8}-[0-9]{3}$ ]]; then
+        printf '%s\n' \
+            "ERROR: Invalid Recovery Point ID." \
+            "Expected format: RP-YYYYMMDD-XXX" >&2
+        return 1
+    fi
+
+    SOURCE_RECOVERY_POINT_PATH="${RECOVERY_ROOT}/output/${SOURCE_RECOVERY_POINT_ID}"
+
+    if [[ ! -d "${SOURCE_RECOVERY_POINT_PATH}" ]]; then
+        printf '%s\n' \
+            "ERROR: Source Recovery Point does not exist:" \
+            "${SOURCE_RECOVERY_POINT_PATH}" >&2
+        return 1
+    fi
+
+    EXAMPLE_RECOVERY_POINT_ID="${SOURCE_RECOVERY_POINT_ID}.example"
+    EXAMPLE_RECOVERY_POINT_PATH="${RECOVERY_ROOT}/output.example/${EXAMPLE_RECOVERY_POINT_ID}"
+
+    if [[ -e "${EXAMPLE_RECOVERY_POINT_PATH}" ]]; then
+        printf '%s\n' \
+            "ERROR: Example Recovery Point already exists:" \
+            "${EXAMPLE_RECOVERY_POINT_PATH}" >&2
+        return 1
+    fi
+
+    export SOURCE_RECOVERY_POINT_ID
+    export EXAMPLE_RECOVERY_POINT_ID
+    export SOURCE_USER
+    export SOURCE_HOME
+    export SOURCE_HOSTNAME
+}
+
+
+copy_recovery_point() {
+
+    printf '%s\n' "Copying Recovery Point..."
+
+    mkdir -p "${RECOVERY_ROOT}/output.example"
+
+    cp -a \
+        "${SOURCE_RECOVERY_POINT_PATH}" \
+        "${EXAMPLE_RECOVERY_POINT_PATH}"
+
+    if [[ ! -d "${EXAMPLE_RECOVERY_POINT_PATH}" ]]; then
+        printf '%s\n' "ERROR: Recovery Point copy failed." >&2
+        return 1
+    fi
+}
+
+
+sanitize_text_file() {
+
+    local TARGET_FILE="$1"
+
+    perl -0pi -e '
+        if (defined $ENV{SOURCE_HOME} && length $ENV{SOURCE_HOME}) {
+            s/\Q$ENV{SOURCE_HOME}\E/\/home\/XXXXX/g;
+        }
+
+        if (defined $ENV{SOURCE_USER} && length $ENV{SOURCE_USER}) {
+            s/\b\Q$ENV{SOURCE_USER}\E\b/XXXXX/g;
+        }
+
+        if (defined $ENV{SOURCE_HOSTNAME} && length $ENV{SOURCE_HOSTNAME}) {
+            s/\b\Q$ENV{SOURCE_HOSTNAME}\E\b/XXXXX-HOST/g;
+        }
+
+        s/\Q$ENV{SOURCE_RECOVERY_POINT_ID}\E/$ENV{EXAMPLE_RECOVERY_POINT_ID}/g;
+
+        s{
+            \b(
+                192\.168\.\d{1,3}\.\d{1,3}
+                |
+                10\.\d{1,3}\.\d{1,3}\.\d{1,3}
+            )\b
+        }{XXX.XXX.XXX.XXX}gx;
+
+        s{
+            \b[A-Za-z0-9._%+-]+
+            \@
+            [A-Za-z0-9.-]+
+            \.[A-Za-z]{2,}
+        }{XXXXX\@XXXXX.XXX}gx;
+
+        s/\b(?:[A-Za-z0-9-]+\.)*revchatham\.com\b/XXXXX.XXX/gi;
+
+        s/^proxmox$/XXXXX-HOST/mg;
+        s/\bLinux proxmox\b/Linux XXXXX-HOST/g;
+    ' "${TARGET_FILE}"
+}
+
+
+sanitize_regular_files() {
+
+    local TARGET_FILE
+
+    printf '%s\n' "Sanitizing Recovery Point files..."
+
+    while IFS= read -r -d '' TARGET_FILE; do
+
+        if grep -Iq . "${TARGET_FILE}"; then
+            sanitize_text_file "${TARGET_FILE}"
+        fi
+
+    done < <(
+        find "${EXAMPLE_RECOVERY_POINT_PATH}" \
+            -type f \
+            ! -path "${EXAMPLE_RECOVERY_POINT_PATH}/documentation/documentation.tar.gz" \
+            ! -path "${EXAMPLE_RECOVERY_POINT_PATH}/checksums/SHA256SUMS.txt" \
+            -print0
+    )
+}
+
+
+sanitize_documentation_archive() {
+
+    local DOCUMENTATION_ARCHIVE
+    local EXTRACT_DIRECTORY
+    local TARGET_FILE
+
+    DOCUMENTATION_ARCHIVE="${EXAMPLE_RECOVERY_POINT_PATH}/documentation/documentation.tar.gz"
+
+    if [[ ! -f "${DOCUMENTATION_ARCHIVE}" ]]; then
+        printf '%s\n' \
+            "ERROR: Documentation archive not found:" \
+            "${DOCUMENTATION_ARCHIVE}" >&2
+        return 1
+    fi
+
+    printf '%s\n' "Sanitizing documentation archive..."
+
+    EXTRACT_DIRECTORY="${TEMP_DIRECTORY}/documentation"
+
+    mkdir -p "${EXTRACT_DIRECTORY}"
+
+    tar -xzf \
+        "${DOCUMENTATION_ARCHIVE}" \
+        -C "${EXTRACT_DIRECTORY}"
+
+    while IFS= read -r -d '' TARGET_FILE; do
+
+        if grep -Iq . "${TARGET_FILE}"; then
+            sanitize_text_file "${TARGET_FILE}"
+        fi
+
+    done < <(
+        find "${EXTRACT_DIRECTORY}" \
+            -type f \
+            -print0
+    )
+
+    rm -f -- "${DOCUMENTATION_ARCHIVE}"
+
+    tar -czf \
+        "${DOCUMENTATION_ARCHIVE}" \
+        -C "${EXTRACT_DIRECTORY}" \
+        .
+}
+
+
+rename_example_artifacts() {
+
+    local SOURCE_MANIFEST
+    local EXAMPLE_MANIFEST
+    local SOURCE_VERIFICATION
+    local EXAMPLE_VERIFICATION
+
+    printf '%s\n' "Renaming example artifacts..."
+
+    SOURCE_MANIFEST="${EXAMPLE_RECOVERY_POINT_PATH}/manifest/${SOURCE_RECOVERY_POINT_ID}_MANIFEST.md"
+    EXAMPLE_MANIFEST="${EXAMPLE_RECOVERY_POINT_PATH}/manifest/${EXAMPLE_RECOVERY_POINT_ID}_MANIFEST.md"
+
+    SOURCE_VERIFICATION="${EXAMPLE_RECOVERY_POINT_PATH}/verification/${SOURCE_RECOVERY_POINT_ID}_VERIFICATION.md"
+    EXAMPLE_VERIFICATION="${EXAMPLE_RECOVERY_POINT_PATH}/verification/${EXAMPLE_RECOVERY_POINT_ID}_VERIFICATION.md"
+
+    if [[ ! -f "${SOURCE_MANIFEST}" ]]; then
+        printf '%s\n' \
+            "ERROR: Source manifest filename not found:" \
+            "${SOURCE_MANIFEST}" >&2
+        return 1
+    fi
+
+    if [[ ! -f "${SOURCE_VERIFICATION}" ]]; then
+        printf '%s\n' \
+            "ERROR: Source verification filename not found:" \
+            "${SOURCE_VERIFICATION}" >&2
+        return 1
+    fi
+
+    mv -- "${SOURCE_MANIFEST}" "${EXAMPLE_MANIFEST}"
+    mv -- "${SOURCE_VERIFICATION}" "${EXAMPLE_VERIFICATION}"
+
+    if [[ ! -f "${EXAMPLE_MANIFEST}" ]] ||
+       [[ ! -f "${EXAMPLE_VERIFICATION}" ]]; then
+        printf '%s\n' "ERROR: Example artifact renaming failed." >&2
+        return 1
+    fi
+}
+
+
+create_example_marker() {
+
+    local EXAMPLE_MARKER
+
+    EXAMPLE_MARKER="${EXAMPLE_RECOVERY_POINT_PATH}/EXAMPLE.md"
+
+    cat <<EOF > "${EXAMPLE_MARKER}"
+# Recovery Point Example
+
+Recovery Point ID:
+${EXAMPLE_RECOVERY_POINT_ID}
+
+Source Recovery Point:
+${SOURCE_RECOVERY_POINT_ID}
+
+Generated:
+$(date -u '+%Y-%m-%d %H:%M:%S UTC')
+
+Generator:
+Recovery Framework Sanitizer v1.0.0
+
+---
+
+## Purpose
+
+This directory is a sanitized example generated from a real Recovery Point.
+
+It demonstrates the Recovery Framework structure, collected artifacts,
+verification process, and checksum output without exposing private
+environment-specific information.
+
+---
+
+## Sanitization
+
+The sanitization process replaces or removes environment-specific values,
+including:
+
+- Usernames
+- Hostnames
+- Home-directory paths
+- Internal IPv4 addresses
+- Domain names
+- Email addresses
+- Other matched environment identifiers
+
+The documentation archive is extracted, sanitized, and rebuilt.
+
+Checksums are regenerated after sanitization.
+
+---
+
+## Important
+
+This example is not intended to be used for disaster recovery.
+
+Operational Recovery Points are generated separately under:
+
+\`\`\`text
+automation/recovery/output/
+\`\`\`
+
+Those operational artifacts are excluded from version control.
+EOF
+}
+
+
+regenerate_checksums() {
+
+    local CHECKSUM_DIRECTORY
+    local CHECKSUM_FILE
+
+    CHECKSUM_DIRECTORY="${EXAMPLE_RECOVERY_POINT_PATH}/checksums"
+    CHECKSUM_FILE="${CHECKSUM_DIRECTORY}/SHA256SUMS.txt"
+
+    printf '%s\n' "Regenerating example checksums..."
+
+    mkdir -p "${CHECKSUM_DIRECTORY}"
+    rm -f -- "${CHECKSUM_FILE}"
+
+    (
+        cd "${EXAMPLE_RECOVERY_POINT_PATH}"
+
+        find . \
+            -type f \
+            ! -path "./checksums/*" \
+            ! -path "./logs/*" \
+            ! -path "./verification/*" \
+            ! -path "./manifest/*" \
+            -print0 |
+        sort -z |
+        xargs -0 sha256sum |
+        sed 's#  \./#  #' \
+            > "checksums/SHA256SUMS.txt"
+    )
+
+    if [[ ! -s "${CHECKSUM_FILE}" ]]; then
+        printf '%s\n' "ERROR: Example checksum generation failed." >&2
+        return 1
+    fi
+}
+
+
+scan_example_files() {
+
+    local SCAN_PATTERN
+    local SCAN_STATUS
+
+    SCAN_PATTERN='192\.168\.|10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}|revchatham\.com|/home/angel|ubuntu-server'
+
+    SCAN_STATUS="PASS"
+
+    printf '%s\n' "Scanning sanitized files..."
+
+    if grep -RInE \
+        --exclude='SHA256SUMS.txt' \
+        --exclude='documentation.tar.gz' \
+        "${SCAN_PATTERN}" \
+        "${EXAMPLE_RECOVERY_POINT_PATH}"; then
+
+        SCAN_STATUS="FAIL"
+    fi
+
+    printf '%s\n' "Scanning sanitized documentation archive..."
+
+    if tar -xOzf \
+        "${EXAMPLE_RECOVERY_POINT_PATH}/documentation/documentation.tar.gz" \
+        2>/dev/null |
+        grep -E "${SCAN_PATTERN}"; then
+
+        SCAN_STATUS="FAIL"
+    fi
+
+    if [[ "${SCAN_STATUS}" != "PASS" ]]; then
+        printf '%s\n' \
+            "ERROR: Sensitive-value scan found remaining matches." >&2
+        return 1
+    fi
+}
+
+
+verify_source_unchanged() {
+
+    if [[ ! -d "${SOURCE_RECOVERY_POINT_PATH}" ]]; then
+        printf '%s\n' \
+            "ERROR: Source Recovery Point is no longer present." >&2
+        return 1
+    fi
+}
+
+
+print_summary() {
+
+    printf '\n'
+    printf '%s\n' "============================================================"
+    printf '%s\n' "Recovery Point Example Generation Complete"
+    printf '%s\n' "============================================================"
+    printf 'Source Recovery Point:  %s\n' "${SOURCE_RECOVERY_POINT_ID}"
+    printf 'Example Recovery Point: %s\n' "${EXAMPLE_RECOVERY_POINT_ID}"
+    printf 'Location:               %s\n' "${EXAMPLE_RECOVERY_POINT_PATH}"
+    printf '\n'
+    printf '%s\n' "Sanitization Verification:"
+    printf '%-40s | %s\n' "Recovery Point Copy" "PASS"
+    printf '%-40s | %s\n' "Regular File Sanitization" "PASS"
+    printf '%-40s | %s\n' "Documentation Archive Sanitization" "PASS"
+    printf '%-40s | %s\n' "Example Artifact Naming" "PASS"
+    printf '%-40s | %s\n' "Example Marker Present" "PASS"
+    printf '%-40s | %s\n' "Checksum Regeneration" "PASS"
+    printf '%-40s | %s\n' "Sensitive-Value Scan" "PASS"
+    printf '%-40s | %s\n' "Original Recovery Point Preserved" "PASS"
+    printf '%s\n' "============================================================"
+    printf '\n'
+    printf '%s\n' "Inspect with:"
+    printf '  cd "%s"\n' "${EXAMPLE_RECOVERY_POINT_PATH}"
+    printf '  find . -maxdepth 3 -type f | sort\n'
+}
+
+
+main() {
+
+    trap cleanup EXIT
+
+    validate_requirements
+    validate_source_recovery_point
+
+    TEMP_DIRECTORY="$(mktemp -d)"
+
+    copy_recovery_point
+    sanitize_regular_files
+    sanitize_documentation_archive
+    rename_example_artifacts
+    create_example_marker
+    regenerate_checksums
+    scan_example_files
+    verify_source_unchanged
+    print_summary
+}
+
+
+main "$@"

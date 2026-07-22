@@ -1,0 +1,25 @@
+services:
+  homepage:
+    image: ${HOMEPAGE_IMAGE}:${HOMEPAGE_TAG}
+    container_name: homepage
+    restart: unless-stopped
+    networks:
+      - homelab
+
+    ports:
+      - "${HOMEPAGE_PORT}:3000"
+
+    volumes:
+      - ./config:/app/config
+
+    env_file:
+      - .env
+
+    environment:
+      PUID: ${PUID}
+      PGID: ${PGID}
+      HOMEPAGE_ALLOWED_HOSTS: ${HOMEPAGE_ALLOWED_HOSTS}
+
+networks:
+    homelab:
+      external: true

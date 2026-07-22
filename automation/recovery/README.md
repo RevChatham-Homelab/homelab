@@ -160,6 +160,8 @@ Additional documentation is available within the repository.
 
 | Document | Purpose |
 |----------|---------|
+| IMPLEMENTATION.md | Describes how the Recovery Automation Framework generates, verifies, and finalizes Recovery Points. |
+| ARCHITECTURE.md | Documents the software architecture, execution flow, and library responsibilities of the Recovery Automation Framework. |
 | RECOVERY_PHASE_STANDARD.md | Defines Recovery Phase execution requirements. |
 | RECOVERY_POINT_STANDARD.md | Defines the Recovery Point standard. |
 | VERIFICATION_STANDARD.md | Defines verification requirements. |

@@ -1,0 +1,8 @@
+Proxmox Host Information
+=======================
+
+XXXXX-HOST
+
+pve-manager/7.4-3/9002ab8a (running kernel: 5.15.102-1-pve)
+
+Linux XXXXX-HOST 5.15.102-1-pve #1 SMP PVE 5.15.102-1 (2023-03-14T13:48Z) x86_64 GNU/Linux

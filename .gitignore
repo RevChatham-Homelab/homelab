@@ -83,3 +83,7 @@ Recovery_Points/
 *.tar.gz
 *.vma
 *.vma.zst
+
+# Recovery Automation Example Recovery Point
+!automation/recovery/output.example/
+!automation/recovery/output.example/**

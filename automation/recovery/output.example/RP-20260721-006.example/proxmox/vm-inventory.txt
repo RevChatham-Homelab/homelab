@@ -1,0 +1,5 @@
+Virtual Machine Inventory
+========================
+
+      VMID NAME                 STATUS     MEM(MB)    BOOTDISK(GB) PID
+       100 UbuntuServer24.04    running    6144              80.00 708691

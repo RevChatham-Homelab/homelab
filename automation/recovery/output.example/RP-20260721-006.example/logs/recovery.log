@@ -1,0 +1,8 @@
+============================================================
+Recovery Automation Execution Log
+============================================================
+Recovery Point ID : RP-20260721-006.example
+Started           : Tue Jul 21 10:33:49 PM UTC 2026
+
+[2026-07-21 22:33:53] Recovery Point RP-20260721-006.example created successfully.
+[2026-07-21 22:33:53] Recovery Point location: /home/XXXXX/homelab/automation/recovery/output/RP-20260721-006.example

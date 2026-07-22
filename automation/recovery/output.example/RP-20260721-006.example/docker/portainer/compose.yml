@@ -1,0 +1,27 @@
+services:
+  portainer:
+    image: ${PORTAINER_IMAGE}:${PORTAINER_TAG}
+    container_name: portainer
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    networks:
+      - homelab
+
+    ports:
+      - "${PORTAINER_EDGE_PORT}:8000"
+      - "${PORTAINER_HTTPS_PORT}:9443"
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+volumes:
+  portainer_data:
+    external: true
+
+networks:
+  homelab:
+    external: true

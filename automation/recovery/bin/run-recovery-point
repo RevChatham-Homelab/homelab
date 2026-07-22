@@ -46,9 +46,29 @@ main() {
     generate_verification
     finalize_manifest
 
-    log_message "Recovery Automation initialized successfully."
+    log_message "Recovery Point ${RECOVERY_POINT_ID} created successfully."
+    log_message "Recovery Point location: ${RECOVERY_POINT_PATH}"
 
-    echo "Recovery Automation initialization completed."
+    printf '\n'
+    printf '%s\n' "============================================================"
+    printf '%s\n' "Recovery Point Generation Complete"
+    printf '%s\n' "============================================================"
+    printf 'Recovery Point ID: %s\n' "${RECOVERY_POINT_ID}"
+    printf 'Location:          %s\n' "${RECOVERY_POINT_PATH}"
+    printf '\n'
+    printf '%s\n' "Key directories:"
+    printf '  Manifest:         %s/manifest\n' "${RECOVERY_POINT_PATH}"
+    printf '  Checksums:        %s/checksums\n' "${RECOVERY_POINT_PATH}"
+    printf '  Verification:     %s/verification\n' "${RECOVERY_POINT_PATH}"
+    printf '  Logs:             %s/logs\n' "${RECOVERY_POINT_PATH}"
+
+    print_recovery_verification_summary
+
+    printf '\n'
+    printf '%s\n' "Inspect with:"
+    printf '  cd "%s"\n' "${RECOVERY_POINT_PATH}"
+    printf '  find . -maxdepth 3 -type f | sort\n'
+    printf '%s\n' "============================================================"
 
     return 0
 }

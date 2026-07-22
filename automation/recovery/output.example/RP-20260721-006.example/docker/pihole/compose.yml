@@ -1,0 +1,25 @@
+services:
+  pihole:
+    container_name: pihole
+    image: ${PIHOLE_IMAGE}:${PIHOLE_TAG}
+    hostname: pihole
+    restart: unless-stopped
+    networks:
+      - homelab
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "8080:80/tcp"
+
+    environment:
+      FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}
+    volumes:
+      - ./etc-pihole:/etc/pihole
+      - ./etc-dnsmasq.d:/etc/dnsmasq.d
+networks:
+  homelab:
+    external: true
