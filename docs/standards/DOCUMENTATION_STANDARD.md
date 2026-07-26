@@ -2,13 +2,17 @@
 
 **Project:** RevChatham Homelab
 
+**Document ID:** doc-001
+
 **Document:** Documentation Standard
 
-**Document Version:** 2.0.0
+**Document Version:** 1.0.0
 
-**Last Reviewed:** 2026-07-15
+**Last Reviewed:** 2026-07-22
 
-**Status:** Operational
+**Status:** Draft
+
+**Author:** Adrian Chatham
 
 ---
 
@@ -37,13 +41,17 @@ Every governed document shall begin with standardized metadata appropriate to th
 
 **Project:** RevChatham Homelab
 
+**Document ID:** doc-000
+
 **Document:** Document Name
 
 **Document Version:** x.y.z
 
 **Last Reviewed:** YYYY-MM-DD
 
-**Status:** Draft | Operational | Deprecated | Archived
+**Status:** Draft | Approved | Released - YYYY-MM-DD | Deprecated | Archived
+
+**Author:** Adrian Chatham
 ```
 
 ---
@@ -57,10 +65,12 @@ Governed documentation shall use metadata appropriate to the document type.
 Use:
 
 - Project
+- Document ID
 - Document
 - Document Version
 - Last Reviewed
 - Status
+- Author
 
 Examples:
 
@@ -79,9 +89,11 @@ Use:
 
 - Project
 - Service
+- Document ID
 - Document Version
 - Last Reviewed
 - Status
+- Author
 
 Examples:
 
@@ -100,9 +112,11 @@ Use:
 
 - Project
 - Directory
+- Document ID
 - Document Version
 - Last Reviewed
 - Status
+- Author
 
 Examples:
 
@@ -120,10 +134,12 @@ Overview documentation introduces a repository or documentation collection.
 Use:
 
 - Project
+- Document ID
 - Document
 - Document Version
 - Last Reviewed
 - Status
+- Author
 
 Examples:
 
@@ -143,6 +159,93 @@ Examples include:
 - Recovery Point ID
 
 Controlled identifiers supplement the required metadata and shall not replace required metadata fields.
+
+---
+
+## Document Prefix Naming Convention
+
+Document prefixes identify the document namespace.
+
+Repository-wide documentation categories shall use lowercase prefixes.
+
+Examples:
+
+- doc
+- eng
+- arc
+
+Project or system acronyms shall use uppercase prefixes.
+
+Examples:
+
+- RMA
+- RAF
+- RP
+- SRM
+
+Document IDs combine the document prefix with a reserved document number.
+
+Examples:
+
+```text
+doc-001
+eng-001
+arc-003
+RMA-001
+RAF-003
+RP-001
+SRM-001
+```
+
+This convention provides a clear visual distinction between repository-wide documentation and project-specific systems while maintaining consistent document identification.
+
+---
+
+## Reserved Document Numbers
+
+The following document numbers are reserved across the repository.
+
+| Number | Purpose |
+|---------|--------------------------|
+| 000 | README / Overview |
+| 001 | Standard |
+| 002 | Template |
+| 003 | Architecture |
+| 004 | Principles |
+| 005 | Design Specification |
+| 006 | Implementation Guide |
+| 007 | Runbook |
+| 008 | Troubleshooting Guide |
+| 009 | Reference |
+
+These reserved identifiers shall remain consistent throughout the repository.
+
+---
+
+## Document Lifecycle
+
+Documentation follows the lifecycle below.
+
+```text
+Version: 1.0.0
+Status: Draft
+
+↓
+
+Review
+
+↓
+
+Version: 1.0.0
+Status: Approved
+
+↓
+
+Version: 1.0.0
+Status: Released - YYYY-MM-DD
+```
+
+A review is considered an activity rather than a document status.
 
 ---
 
@@ -178,8 +281,6 @@ Project Changelog v1.0.0
 Backup Schedule v1.0.0
 
 Engineering Principles v1.0.0
-
-Project Improvement Register v1.0.0
 ```
 
 The footer provides document identification for printed or separated pages and serves as a quick reference to the document version.
@@ -191,8 +292,20 @@ Example:
 ```text
 System Recovery Manual v1.0.0
 
-Recovery Manual ID: SRM-1.0.0
+Document ID: SRM-001
 ```
+
+---
+
+## Revision History
+
+Every governed document shall maintain a revision history.
+
+Example:
+
+| Version | Date | Description | Author |
+|----------|------------|---------------------------|----------------|
+| X.Y.Z | YYYY-MM-DD | Description | Adrian Chatham |
 
 ---
 
@@ -206,4 +319,4 @@ Repository documentation shall be reviewed for compliance during repository audi
 
 ---
 
-Documentation Standard v2.0.0
+Documentation Standard v1.0.0

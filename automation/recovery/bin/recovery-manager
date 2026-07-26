@@ -1,0 +1,439 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import os
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+
+APP_NAME = "CBART"
+APP_FULL_NAME = "Chatham Backup and Recovery Tool"
+APP_VERSION = "1.0.0"
+INTERFACE_WIDTH = 68
+
+BIN_DIR = Path(__file__).resolve().parent
+RECOVERY_ROOT = BIN_DIR.parent
+REPO_ROOT = RECOVERY_ROOT.parent.parent
+
+OUTPUT_DIR = RECOVERY_ROOT / "output"
+EXAMPLE_OUTPUT_DIR = RECOVERY_ROOT / "output.example"
+RUN_SCRIPT = BIN_DIR / "run-recovery-point"
+SANITIZE_SCRIPT = BIN_DIR / "sanitize-recovery-point"
+
+T14_TARGET = os.environ.get(
+    "RECOVERY_T14_TARGET",
+    "t14:~/Recovery_Points/",
+)
+
+
+def divider(character: str = "=") -> str:
+    return character * INTERFACE_WIDTH
+
+
+def center(text: str) -> str:
+    return text.center(INTERFACE_WIDTH)
+
+
+def header(title: str, subtitle: str | None = None) -> None:
+    print("\n" + divider())
+    print(center(title))
+    if subtitle:
+        print(center(subtitle))
+    print(divider())
+
+
+def application_header() -> None:
+    print("\n" + divider())
+    print(center(APP_NAME))
+    print(center(APP_FULL_NAME))
+    print(center(f"Version {APP_VERSION}"))
+    print(divider())
+
+
+def pause() -> None:
+    input("\nPress Enter to continue...")
+
+
+def run(command: list[str]) -> None:
+    print("\nRunning:", " ".join(command), "\n")
+    subprocess.run(command, cwd=REPO_ROOT, check=True)
+
+
+def recovery_points() -> list[Path]:
+    if not OUTPUT_DIR.exists():
+        return []
+
+    return sorted(
+        [
+            path
+            for path in OUTPUT_DIR.iterdir()
+            if path.is_dir() and path.name.startswith("RP-")
+        ],
+        key=lambda path: path.name,
+    )
+
+
+def choose(items: list[Path], prompt: str) -> Path | None:
+    if not items:
+        print("No Recovery Points found.")
+        return None
+
+    for index, item in enumerate(items, 1):
+        print(f"  {index}. {item.name}")
+
+    print("  0. Cancel")
+
+    while True:
+        value = input(f"\n{prompt}: ").strip()
+
+        if value == "0":
+            return None
+
+        try:
+            return items[int(value) - 1]
+        except (ValueError, IndexError):
+            print("Invalid selection.")
+
+
+def choose_destination() -> str:
+    header("Backup Operations", "Recovery Point Destination")
+
+    print("  1. Server only")
+    print("  2. Server and flash drive")
+    print("  3. Server and T14")
+    print("  4. Server, flash drive, and T14")
+    print("  0. Cancel")
+
+    while True:
+        value = input("\nChoose a destination: ").strip()
+
+        if value in {"0", "1", "2", "3", "4"}:
+            return value
+
+        print("Invalid selection.")
+
+
+def newest_new_point(before: set[Path]) -> Path:
+    after = set(recovery_points())
+    created = sorted(after - before, key=lambda path: path.name)
+
+    if len(created) == 1:
+        return created[0]
+
+    if created:
+        selected = choose(created, "Select the new Recovery Point")
+        if selected:
+            return selected
+
+    points = recovery_points()
+
+    if not points:
+        raise RuntimeError("No Recovery Point directory was created.")
+
+    return max(points, key=lambda path: path.stat().st_mtime)
+
+
+def flash_mounts() -> list[Path]:
+    user = os.environ.get("USER", "angel")
+    roots = [
+        Path("/media") / user,
+        Path("/run/media") / user,
+        Path("/mnt"),
+    ]
+
+    found: set[Path] = set()
+
+    for root in roots:
+        if not root.is_dir():
+            continue
+
+        try:
+            for item in root.iterdir():
+                if item.is_dir() and os.path.ismount(item):
+                    found.add(item)
+        except PermissionError:
+            pass
+
+    return sorted(found, key=str)
+
+
+def copy_to_flash(point: Path) -> None:
+    header("Backup Operations", "Flash Drive Copy")
+
+    mounts = flash_mounts()
+
+    for index, mount in enumerate(mounts, 1):
+        print(f"  {index}. {mount}")
+
+    print("  0. Enter path manually or cancel")
+
+    destination_root: Path | None = None
+
+    if mounts:
+        choice = input("\nChoose a mounted drive: ").strip()
+
+        if choice != "0":
+            try:
+                destination_root = mounts[int(choice) - 1]
+            except (ValueError, IndexError):
+                raise RuntimeError("Invalid flash-drive selection.")
+
+    if destination_root is None:
+        manual = input("Mounted path (blank cancels): ").strip()
+
+        if not manual:
+            print("Flash-drive copy cancelled.")
+            return
+
+        destination_root = Path(manual).expanduser().resolve()
+
+    if not destination_root.is_dir():
+        raise RuntimeError(f"Destination does not exist: {destination_root}")
+
+    destination = destination_root / "Recovery_Points" / point.name
+    destination.parent.mkdir(parents=True, exist_ok=True)
+
+    if destination.exists():
+        answer = input(
+            f"{destination} exists. Replace it? [y/N]: "
+        ).strip().lower()
+
+        if answer != "y":
+            print("Flash-drive copy skipped.")
+            return
+
+        shutil.rmtree(destination)
+
+    shutil.copytree(point, destination, symlinks=True)
+    print(f"Copied to: {destination}")
+
+
+def copy_to_t14(point: Path) -> None:
+    if shutil.which("rsync") is None:
+        raise RuntimeError("rsync is not installed.")
+
+    target = T14_TARGET.rstrip("/") + f"/{point.name}/"
+
+    header("Backup Operations", "T14 Copy")
+    print(f"Target: {target}")
+
+    answer = input("Continue? [Y/n]: ").strip().lower()
+
+    if answer not in {"", "y"}:
+        print("T14 copy cancelled.")
+        return
+
+    run(
+        [
+            "rsync",
+            "-a",
+            "--human-readable",
+            "--info=progress2",
+            f"{point}/",
+            target,
+        ]
+    )
+
+
+def generate() -> None:
+    destination = choose_destination()
+
+    if destination == "0":
+        return
+
+    before = set(recovery_points())
+    run([str(RUN_SCRIPT)])
+    point = newest_new_point(before)
+
+    header("Backup Operations", "Recovery Point Created")
+    print(f"Server copy: {point}")
+
+    if destination in {"2", "4"}:
+        try:
+            copy_to_flash(point)
+        except Exception as exc:
+            print(f"Flash-drive copy failed: {exc}")
+            print("The server copy remains intact.")
+
+    if destination in {"3", "4"}:
+        try:
+            copy_to_t14(point)
+        except Exception as exc:
+            print(f"T14 copy failed: {exc}")
+            print("The server copy remains intact.")
+
+
+def sanitize() -> None:
+    header("Recovery Point Library", "Sanitize Recovery Point")
+
+    point = choose(
+        recovery_points(),
+        "Choose a Recovery Point",
+    )
+
+    if point is None:
+        return
+
+    run([str(SANITIZE_SCRIPT), str(point)])
+    print(f"Sanitized output root: {EXAMPLE_OUTPUT_DIR}")
+
+
+def list_points() -> None:
+    header("Recovery Point Library", "Available Recovery Points")
+
+    points = recovery_points()
+
+    if not points:
+        print("No Recovery Points found.")
+        return
+
+    for point in points:
+        try:
+            size = subprocess.check_output(
+                ["du", "-sh", str(point)],
+                text=True,
+            ).split()[0]
+        except Exception:
+            size = "unknown"
+
+        print(
+            f"  {point.name:<24} "
+            f"{size:>10}  "
+            f"{point}"
+        )
+
+
+def show_configuration() -> None:
+    header("CBART Settings", "Current Configuration")
+
+    print(f"Application:     {APP_NAME} v{APP_VERSION}")
+    print(f"Repository:      {REPO_ROOT}")
+    print(f"Recovery root:   {RECOVERY_ROOT}")
+    print(f"Output:          {OUTPUT_DIR}")
+    print(f"Example output:  {EXAMPLE_OUTPUT_DIR}")
+    print(f"T14 target:      {T14_TARGET}")
+    print(f"Run script:      {RUN_SCRIPT}")
+    print(f"Sanitize script: {SANITIZE_SCRIPT}")
+
+
+def show_about() -> None:
+    header(APP_NAME, APP_FULL_NAME)
+
+    print(f"Version: {APP_VERSION}")
+    print()
+    print(
+        "CBART provides a single operator interface for the "
+        "RevChatham Homelab backup and recovery framework."
+    )
+    print()
+    print("Current capabilities:")
+    print("  - Generate Recovery Points")
+    print("  - Copy Recovery Points to approved destinations")
+    print("  - List available Recovery Points")
+    print("  - Create sanitized example Recovery Points")
+    print()
+    print("Internal framework:")
+    print(f"  {RECOVERY_ROOT}")
+
+
+def validate_environment() -> bool:
+    valid = True
+
+    for script in (RUN_SCRIPT, SANITIZE_SCRIPT):
+        if not script.is_file():
+            print(f"Missing script: {script}", file=sys.stderr)
+            valid = False
+            continue
+
+        if not os.access(script, os.X_OK):
+            print(f"Not executable: {script}", file=sys.stderr)
+            valid = False
+
+    return valid
+
+
+def recovery_point_library_menu() -> None:
+    while True:
+        header("Recovery Point Library", "Select an Operation")
+
+        print("  1. List Recovery Points")
+        print("  2. Sanitize a Recovery Point")
+        print("  0. Back")
+
+        choice = input("\nChoose an option: ").strip()
+
+        if choice == "1":
+            list_points()
+            pause()
+
+        elif choice == "2":
+            sanitize()
+            pause()
+
+        elif choice == "0":
+            return
+
+        else:
+            print("Invalid selection.")
+            pause()
+
+
+def main() -> int:
+    if not validate_environment():
+        return 1
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    while True:
+        application_header()
+
+        print()
+        print("  1. Backup Operations")
+        print("  2. Recovery Point Library")
+        print("  3. Settings")
+        print("  4. About")
+        print("  0. Exit")
+
+        choice = input("\nChoose an option: ").strip()
+
+        try:
+            if choice == "1":
+                generate()
+                pause()
+
+            elif choice == "2":
+                recovery_point_library_menu()
+
+            elif choice == "3":
+                show_configuration()
+                pause()
+
+            elif choice == "4":
+                show_about()
+                pause()
+
+            elif choice == "0":
+                print("\nExiting CBART.")
+                return 0
+
+            else:
+                print("Invalid selection.")
+                pause()
+
+        except KeyboardInterrupt:
+            print("\nOperation cancelled.")
+            pause()
+
+        except subprocess.CalledProcessError as exc:
+            print(f"Command failed with exit code {exc.returncode}.")
+            pause()
+
+        except Exception as exc:
+            print(f"Error: {exc}")
+            pause()
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

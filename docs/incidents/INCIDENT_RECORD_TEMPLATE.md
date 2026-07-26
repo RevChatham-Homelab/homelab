@@ -1,14 +1,18 @@
-# Incident Report Template
+# Incident Record Template
 
 **Project:** RevChatham Homelab
 
-**Document:** Incident Report Template
+**Document ID:** inc-002
+
+**Document:** Incident Record Template
 
 **Document Version:** 1.0.0
 
-**Last Reviewed:** 2026-07-16
+**Last Reviewed:** 2026-07-22
 
-**Status:** Operational
+**Status:** Draft
+
+**Author:** Adrian Chatham
 
 ---
 
@@ -149,4 +153,4 @@ Incident Report vX.Y.Z
 
 ---
 
-Incident Report Template v1.0.0
+Incident Record Template v1.0.0

@@ -2,15 +2,19 @@
 
 **Project:** RevChatham Homelab
 
+**Document ID:** SRM-001
+
 **Document:** System Recovery Manual
 
 **Recovery Manual ID:** SRM-1.0.0
 
 **Document Version:** 1.0.0
 
-**Last Reviewed:** 2026-07-11
+**Last Reviewed:** 2026-07-22
 
-**Status:** Operational
+**Status:** Draft
+
+**Author:** Adrian Chatham
 
 ---
 
