@@ -8,9 +8,17 @@
 
 **Document Version:** 1.0.0
 
-**Last Reviewed:** 2026-07-26
+**Last Reviewed:** 2026-07-27
 
-**Status:** Draft
+**Status:** In Developement
+
+---
+
+CBART (Chatham Backup and Recovery Tool) is a documentation-driven backup and recovery application being developed as part of the RevChatham Homelab project.
+
+The project is designed to automate the creation, verification, sanitization, and management of Recovery Points while demonstrating disciplined software engineering through standardized documentation, repeatable operational procedures, and reliable automation.
+
+This repository serves as the authoritative source for the engineering documentation that defines the design, implementation, operation, and future development of CBART.
 
 ---
 
@@ -52,7 +60,7 @@
 
 # Purpose
 
-This repository contains the official engineering documentation for the **Console Backup and Recovery Tool (CBART)**. It serves as the central location for all user documentation, engineering standards, implementation guides, architecture references, and supporting materials related to the CBART application.
+This repository contains the official engineering documentation for the **Chatham Backup and Recovery Tool (CBART)**. It serves as the central location for all user documentation, engineering standards, implementation guides, architecture references, and supporting materials related to the CBART application.
 
 The documentation is organized to support the entire lifecycle of the project, from initial installation through long-term maintenance and future development. Rather than functioning solely as a user manual, this repository is intended to serve as the authoritative reference for anyone responsible for using, maintaining, extending, or contributing to CBART.
 
@@ -62,7 +70,7 @@ The documentation is written with the same engineering discipline used throughou
 
 # What is CBART?
 
-The **Console Backup and Recovery Tool (CBART)** is a terminal-based application designed to automate the creation of Recovery Points for the RevChatham Homelab.
+The **Chatham Backup and Recovery Tool (CBART)** is a terminal-based application designed to automate the creation of Recovery Points for the RevChatham Homelab.
 
 CBART is responsible for collecting, organizing, and preserving the critical information required to recover the homelab environment following hardware failure, software corruption, accidental deletion, or other disaster scenarios.
 
@@ -436,21 +444,19 @@ Cross references should always point to the authoritative source for a topic.
 
 # Documentation Lifecycle
 
-Documentation should evolve alongside the application.
+CBART follows a documentation-driven engineering process in which documentation serves as the design specification for the application.
 
-Whenever new functionality is introduced, the corresponding documentation should be reviewed and updated as part of the same development effort.
+The recommended lifecycle for new features is:
 
-The recommended lifecycle is:
+1. Define the feature requirements.
+2. Update or create the appropriate engineering documentation.
+3. Review and approve the proposed design.
+4. Implement the feature.
+5. Validate the implementation through testing.
+6. Update documentation where implementation differs from the original design.
+7. Release the feature.
 
-1. Design the feature.
-2. Update applicable standards.
-3. Implement the feature.
-4. Update architecture documentation.
-5. Update implementation guides.
-6. Update the User Manual if user interaction changes.
-7. Increment the document version where appropriate.
-
-Maintaining documentation as part of the development process ensures that the repository remains accurate and useful over time.
+This workflow helps ensure that implementation remains aligned with documented engineering decisions while allowing the documentation to evolve alongside the application.
 
 ---
 
@@ -491,11 +497,11 @@ The following table provides a high-level overview of the current documentation.
 | Chapter 2 – Installation | Complete |
 | Chapter 3 – User Guide | Complete |
 | Chapter 4 – Interface | Complete |
-| Chapter 5 – Backup & Recovery | Planned |
-| Chapter 6 – Administration | Planned |
-| Chapter 7 – Standards | Planned |
-| Appendix A – Reference | Planned |
-| Appendix B – Changelog | Planned |
+| Chapter 5 – Backup & Recovery | Complete |
+| Chapter 6 – Administration | Complete |
+| Chapter 7 – Standards | Complete |
+| Appendix A – Reference | Complete |
+| Appendix B – Changelog | Complete |
 
 ---
 
@@ -504,11 +510,11 @@ The following table provides a high-level overview of the current documentation.
 | Document | Status |
 |----------|--------|
 | Repository README | In Progress |
-| Navigation Standard | Planned |
-| Interface Standard | Planned |
-| Engineering Standard | Planned |
-| Documentation Style Guide | Planned |
-| Branding Standard | Planned |
+| Navigation Standard | Draft |
+| Interface Standard | Draft |
+| Engineering Standard | Draft |
+| Documentation Style Guide | Draft |
+| Branding Standard | Draft |
 
 ---
 
