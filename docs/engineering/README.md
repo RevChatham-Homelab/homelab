@@ -6,7 +6,7 @@
 
 **Document Version:** 1.0.0
 
-**Last Reviewed:** 2026-07-15
+**Last Reviewed:** 2026-07-27
 
 **Status:** Operational
 
@@ -80,11 +80,11 @@ CHANGELOG
 
 | Document | Purpose |
 |----------|---------|
-| `ROADMAP.md` | Defines the long-term direction of the project. |
-| `draft_proposals/` | Records ideas awaiting engineering review. |
-| `engineering/registers/PROJECT_IMPROVEMENT_REGISTER.md` | Tracks approved project improvements. |
-| `engineering/charters/` | Defines the scope and objectives of individual milestones. |
-| `CHANGELOG.md` | Records completed work and milestone history. |
+| [ROADMAP.md](../ROADMAP.md) | Defines the long-term direction of the project. |
+| [draft_proposals](../draft_proposals/) | Records ideas awaiting engineering review. |
+| [PROJECT_IMPROVEMENT_REGISTER.md](registers/PROJECT_IMPROVEMENT_REGISTER.md) | Tracks approved project improvements. |
+| [charters](charters/) | Defines the scope and objectives of individual milestones. |
+| [CHANGELOG.md](../../CHANGELOG.md) | Records completed work and milestone history. |
 
 ---
 

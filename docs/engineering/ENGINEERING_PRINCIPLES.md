@@ -8,7 +8,7 @@
 
 **Document Version:** 1.0.0
 
-**Last Reviewed:** 2026-07-15
+**Last Reviewed:** 2026-07-27
 
 **Status:** Operational
 
@@ -22,7 +22,7 @@ These principles describe how engineering work is performed throughout the proje
 
 For the engineering philosophy that guides project decisions, see:
 
-- DESIGN_PHILOSOPHY.md
+- [Design Philosophy](DESIGN_PHILOSOPHY.md)
 
 ---
 

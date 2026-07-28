@@ -24,7 +24,7 @@ Engineering registers provide traceability between engineering decisions, milest
 
 | Register | Purpose |
 |----------|---------|
-| `PROJECT_IMPROVEMENT_REGISTER.md` | Tracks approved engineering improvements and their implementation status. |
+| [PROJECT_IMPROVEMENT_REGISTER.md](PROJECT_IMPROVEMENT_REGISTER.md) | Tracks approved engineering improvements and their implementation status. |
 
 Additional engineering registers may be added as the project evolves.
 
@@ -47,9 +47,9 @@ Registers remain living documents and are updated throughout the life of the pro
 
 | Document | Purpose |
 |----------|---------|
-| `draft_proposals/` | Records ideas awaiting engineering review. |
-| `engineering/charters/` | Defines milestone implementation plans. |
-| `CHANGELOG.md` | Records completed engineering work. |
+| [draft_proposals](../../draft_proposals/) | Records ideas awaiting engineering review. |
+| [charters](../charters/) | Defines milestone implementation plans. |
+| [CHANGELOG.md](../../../CHANGELOG.md) | Records completed engineering work. |
 
 ---
 

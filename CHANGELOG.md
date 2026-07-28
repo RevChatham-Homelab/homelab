@@ -6,7 +6,7 @@
 
 **Document Version:** 1.0.0
 
-**Last Reviewed:** 2026-07-15
+**Last Reviewed:** 2026-07-27
 
 **Status:** Operational
 
@@ -22,12 +22,36 @@ This project follows the principles of **Semantic Versioning (SemVer)** and **Ke
 
 ### Planned
 
-- Repository quality assurance
+- Portfolio website development
 - Architecture diagrams
 - Infrastructure screenshots
-- Portfolio website development
-- Automation framework (v0.7.0)
+- Public engineering documentation
+- Wazuh deployment
 - Security hardening
+- Portfolio publication
+
+---
+
+## [0.7.0] - 2026-07-27
+
+### Added
+
+- Recovery Point automation framework
+- CBART terminal application
+- Automated verification framework
+- Repository quality assurance tooling
+- Infrastructure validation scripting
+
+### Changed
+
+- Standardized repository governance documents.
+- Updated project roadmap for milestone progression.
+- Refined README and repository structure.
+- Expanded recovery automation documentation.
+
+### Completed
+
+- Completed Milestone v0.7.0 — Recovery Automation & CBART.
 
 ---
 
@@ -48,6 +72,8 @@ This project follows the principles of **Semantic Versioning (SemVer)** and **Ke
 - Standardized repository headers and footers across governance and recovery documentation.
 - Updated repository documentation to reference the Incident Documentation framework.
 - Refined documentation governance by separating standards from templates.
+
+---
 
 ## [0.6.0] - 2026-07-13
 

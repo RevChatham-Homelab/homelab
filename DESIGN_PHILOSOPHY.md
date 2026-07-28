@@ -6,7 +6,7 @@
 
 **Document Version:** 1.0.0
 
-**Last Reviewed:** 2026-07-15
+**Last Reviewed:** 2026-07-27
 
 **Status:** Operational
 
@@ -23,7 +23,7 @@ The Engineering Principles document describes how these philosophies are applied
 
 For engineering execution and operational practices, see:
 
-- ENGINEERING_PRINCIPLES.md
+- [Engineering Principles](docs/engineering/ENGINEERING_PRINCIPLES.md)
 
 Where uncertainty exists, these philosophies should guide engineering judgment.
 
@@ -61,11 +61,11 @@ Accuracy is always preferred over completeness.
 
 # Integrity Over Convenience
 
-Repository documentation shall accurately reflect the current state of the project.
+Repository documentation shall accurately reflect the project's verified state and approved milestone progression.
 
 Information shall never be altered solely to improve presentation or appearance.
 
-Documentation exists to describe reality, not to create it.
+Documentation exists to describe verified engineering work and established project direction, not to create either.
 
 ---
 
@@ -91,7 +91,7 @@ Completion requires evidence.
 
 Documentation is considered part of the engineering deliverable.
 
-Infrastructure is not complete until the corresponding documentation accurately reflects its implementation.
+Infrastructure is not considered complete until the corresponding documentation accurately reflects its implementation.
 
 Documentation shall be maintained alongside the infrastructure it describes.
 

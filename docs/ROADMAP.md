@@ -6,7 +6,7 @@
 
 **Document Version:** 1.0.0
 
-**Last Reviewed:** 2026-07-15
+**Last Reviewed:** 2026-07-27
 
 **Status:** Operational
 
@@ -140,61 +140,100 @@ Develop a complete operational recovery framework.
 
 ---
 
-# Current Milestone
+# Recently Completed Milestone
 
-## v0.7.0 — Automation
+## v0.7.0 — Recovery Automation & CBART
 
 ### Objectives
 
 Reduce manual administration while preserving approved operational standards.
 
-### Planned Focus
+### Deliverables
 
 - Recovery Point automation
+- CBART terminal application
 - Backup automation
 - Verification automation
 - Repository quality assurance
 - Infrastructure validation scripting
 
-**Status:** Planned
+**Status:** Complete
+
+---
+
+# Current Milestone
+
+## v0.8.0 — Website, Portfolio & Security
+
+### Objectives
+
+Transform the completed homelab into a polished public portfolio while strengthening its security posture and publishing engineering documentation.
+
+### Deliverables
+
+#### Website
+
+- Responsive website
+- Navigation
+- Landing page
+- Contact page
+
+#### Portfolio
+
+- Resume
+- About Me
+- Projects
+- Skills
+- Architecture diagrams
+- Infrastructure screenshots
+
+#### Documentation
+
+- Publish engineering documentation
+- Publish service documentation
+- Incident reports
+- Recovery documentation
+- Changelogs
+- Lessons learned
+
+#### Security
+
+- Wazuh deployment
+- Security monitoring
+- Secrets review
+- Hardening review
+- Disaster Recovery validation
+
+**Status:** In Progress
 
 ---
 
 # Future Milestones
 
-## Security Hardening
+## v0.9.0 — Reserved for Future Development
 
-### Planned Focus
+This milestone is intentionally reserved until the completion of v0.8.0. Its objectives will be defined based on the project's direction at that time.
 
-- Secret management review
-- Container privilege review
-- Docker permission review
-- TLS improvements
-- Internal Docker networking
-- Reverse proxy only access
+**Status:** Reserved
 
 ---
 
-## Monitoring & Observability
+## v1.0.0 — Initial Public Release
 
-### Planned Focus
+### Objectives
 
-- Additional Grafana dashboards
-- Alerting
-- Log aggregation
-- Performance monitoring
+Publish the RevChatham Homelab as a complete, production-inspired portfolio project.
 
----
+### Exit Criteria
 
-## Portfolio Enhancement
+- Documentation complete
+- Website complete
+- Security baseline established
+- Recovery automation complete
+- Repository standards finalized
+- Public release ready
 
-### Planned Focus
-
-- Architecture diagrams
-- Infrastructure screenshots
-- Technical write-ups
-- Lessons learned
-- Public project demonstrations
+**Status:** Target
 
 ---
 
@@ -225,28 +264,6 @@ Reduce manual administration while preserving approved operational standards.
 - CrowdSec
 - Fail2Ban
 - Vulnerability scanning
-
----
-
-## Portfolio Website
-
-### Planned Focus
-
-Develop the public-facing RevChatham Homelab website as a professional IT portfolio.
-
-The Portfolio Website is considered a separate initiative from the underlying infrastructure. Infrastructure readiness is validated through service audits, while website development focuses on content, presentation, and user experience.
-
-### Planned Deliverables
-
-- Homepage design
-- About page
-- Professional résumé
-- Homelab project portfolio
-- Architecture diagrams
-- Infrastructure screenshots
-- Technical write-ups
-- Lessons learned
-- Contact page
 
 ---
 

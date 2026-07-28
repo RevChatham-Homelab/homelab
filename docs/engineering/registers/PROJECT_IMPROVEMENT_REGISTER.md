@@ -129,11 +129,11 @@ Completed improvements remain in this register to preserve project history, engi
 
 | Document | Purpose |
 |----------|---------|
-| `ROADMAP.md` | Defines the long-term direction of the project. |
-| `draft_proposals/` | Records ideas awaiting engineering review. |
-| `engineering/charters/` | Defines milestone objectives and deliverables. |
-| `docs/decisions/` | Records accepted Architecture Decision Records (ADRs) that guide the long-term architecture of the repository. |
-| `CHANGELOG.md` | Records completed work and milestone history. |
+| [ROADMAP.md](../../ROADMAP.md) | Defines the long-term direction of the project. |
+| [draft_proposals](../../draft_proposals/) | Records ideas awaiting engineering review. |
+| [charters](../charters/) | Defines milestone objectives and deliverables. |
+| [decisions](../../decisions/) | Records accepted Architecture Decision Records (ADRs) that guide the long-term architecture of the repository. |
+| [CHANGELOG.md](../../../CHANGELOG.md) | Records completed work and milestone history. |
 
 ---
 

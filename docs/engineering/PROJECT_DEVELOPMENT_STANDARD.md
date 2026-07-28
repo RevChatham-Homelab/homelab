@@ -6,7 +6,7 @@
 
 **Document Version:** 1.0.0
 
-**Last Reviewed:** 2026-07-22
+**Last Reviewed:** 2026-07-27
 
 **Status:** Draft
 
@@ -437,15 +437,9 @@ Noncompliance should be corrected through the normal development lifecycle.
 
 # Standard Status
 
-This document is a draft pending final review and approval.
+This document defines the governing development lifecycle for the RevChatham Homelab project.
 
-Once approved, it will become the governing development lifecycle for the RevChatham Homelab project.
-
-Proposed repository location:
-
-```text
-docs/engineering/REVCHATHAM_DEVELOPMENT_STANDARD.md
-```
+Future revisions shall follow the project's documented change process.
 
 ---
 

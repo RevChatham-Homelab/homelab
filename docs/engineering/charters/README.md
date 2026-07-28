@@ -6,7 +6,7 @@
 
 **Version:** 1.0.0
 
-**Last Reviewed:** 2026-07-14
+**Last Reviewed:** 2026-07-27
 
 **Status:** Operational
 
@@ -51,9 +51,9 @@ Completed charters remain in this directory as part of the project's engineering
 
 | Document | Purpose |
 |----------|---------|
-| `ROADMAP.md` | Defines the long-term project direction. |
-| `engineering/registers/PROJECT_IMPROVEMENT_REGISTER.md` | Tracks approved project improvements. |
-| `CHANGELOG.md` | Records completed milestone work. |
+| [ROADMAP.md](../../ROADMAP.md) | Defines the long-term project direction. |
+| [PROJECT_IMPROVEMENT_REGISTER.md](../registers/PROJECT_IMPROVEMENT_REGISTER.md) | Tracks approved project improvements. |
+| [CHANGELOG.md](../../../CHANGELOG.md) | Records completed milestone work. |
 
 ---
 

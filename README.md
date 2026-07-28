@@ -6,7 +6,7 @@
 
 **Document Version:** 1.0.0
 
-**Last Reviewed:** 2026-07-15
+**Last Reviewed:** 2026-07-27
 
 **Status:** Operational
 
@@ -15,7 +15,7 @@
 > A production-inspired homelab built to develop practical skills in Linux administration, Docker, networking, identity management, monitoring, documentation, and infrastructure security.
 
 ![Project Status](https://img.shields.io/badge/Status-Active-success)
-![Version](https://img.shields.io/badge/Version-v0.6.0-blue)
+![Version](https://img.shields.io/badge/Version-v1.0.0-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
@@ -24,7 +24,7 @@
 
 This repository documents the design, deployment, maintenance, and continuous improvement of my self-hosted homelab.
 
-The project was created to gain hands-on experience with technologies commonly used in IT Operations, Systems Administration, DevOps, and Cybersecurity while building a professional portfolio of real-world infrastructure projects.
+The project is designed to develop hands-on experience with technologies commonly used in IT Operations, Systems Administration, DevOps, and Cybersecurity while building a professional portfolio of real-world infrastructure projects.
 
 Every service is deployed using Docker, documented, audited, and version controlled to mirror professional infrastructure management practices.
 
@@ -140,7 +140,7 @@ homelab/
 
 # Documentation
 
-Detailed documentation is available in the `docs/` directory.
+Comprehensive project documentation is maintained in the `docs/` directory and includes architecture, engineering standards, recovery procedures, audits, incident reports, and project planning.
 
 - Backup, Restore, and Recovery Framework
 - Service Documentation
@@ -153,41 +153,29 @@ Detailed documentation is available in the `docs/` directory.
 
 ---
 
-# Project Status
+# Project Roadmap
 
-Current Milestone:
-
-**v0.6.0 — Backup, Restore, and Recovery Framework**
-
-Completed:
-
-- Production infrastructure deployment
-- Service documentation
-- Service audits
-- Backup Strategy
-- Backup Inventory
-- Backup Schedule
-- Recovery Point Standard
-- System Recovery Manual
-- System Recovery Runbook
-- Disaster Recovery Procedure
-- Restore Procedures
-- GitHub, Docker, Proxmox, and Offsite backup procedures
-- Recovery Point implementation (RP-20260711-001)
+| Milestone | Title | Status |
+|-----------|-------|:------:|
+| **v0.6.0** | Backup, Restore & Recovery Framework | ✅ Completed |
+| **v0.7.0** | Recovery Automation & CBART | ✅ Completed |
+| **v0.8.0** | Website, Portfolio & Security | 🚧 In Progress |
+| **v0.9.0** | Reserved for Future Development | 📌 Reserved |
+| **v1.0.0** | Initial Public Release | 🎯 Target |
 
 ---
 
-# Next Milestone
+## Current Milestone
 
-**v0.7.0 — Automation**
+**v0.8.0 — Website, Portfolio & Security**
 
-Planned Focus:
+### Milestone Objectives
 
-- Recovery Point automation
-- Backup automation
-- Verification automation
-- Repository quality assurance
-- Infrastructure validation scripting
+- Develop the public portfolio website
+- Publish engineering documentation
+- Complete portfolio content
+- Integrate security improvements
+- Prepare the project for public release
 
 ---
 
