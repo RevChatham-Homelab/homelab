@@ -1,0 +1,28 @@
+services:
+  alloy:
+    image: grafana/alloy:v1.18.1
+    container_name: alloy
+    restart: unless-stopped
+
+    command:
+      - run
+      - --server.http.listen-addr=0.0.0.0:12345
+      - --storage.path=/var/lib/alloy/data
+      - /etc/alloy/config.alloy
+
+    networks:
+      - homelab
+
+    volumes:
+      - ./config.alloy:/etc/alloy/config.alloy:ro
+      - alloy-data:/var/lib/alloy/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /home/angel/homelab/automation/recovery/logs:/var/log/recovery:ro
+      - /home/angel/homelab/automation/recovery/output:/var/log/recovery-points:ro
+
+volumes:
+  alloy-data:
+
+networks:
+  homelab:
+    external: true

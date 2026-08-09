@@ -1,0 +1,59 @@
+discovery.docker "containers" {
+  host = "unix:///var/run/docker.sock"
+}
+
+discovery.relabel "docker_logs" {
+  targets = discovery.docker.containers.targets
+
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/(.*)"
+    target_label  = "container"
+  }
+
+  rule {
+    source_labels = ["__meta_docker_container_image"]
+    target_label  = "image"
+  }
+}
+
+loki.source.docker "containers" {
+  host       = "unix:///var/run/docker.sock"
+  targets    = discovery.relabel.docker_logs.output
+  labels     = {
+    job = "docker",
+  }
+  forward_to = [loki.process.docker.receiver]
+}
+
+loki.process "docker" {
+  stage.docker {}
+
+  forward_to = [loki.write.local.receiver]
+}
+
+local.file_match "recovery_logs" {
+  path_targets = [
+    {
+      __path__ = "/var/log/recovery/cron.log",
+      job      = "recovery-automation",
+      log_type = "cron",
+    },
+    {
+      __path__ = "/var/log/recovery-points/RP-*/logs/recovery.log",
+      job      = "recovery-automation",
+      log_type = "recovery-point",
+    },
+  ]
+}
+
+loki.source.file "recovery_logs" {
+  targets    = local.file_match.recovery_logs.targets
+  forward_to = [loki.write.local.receiver]
+}
+
+loki.write "local" {
+  endpoint {
+    url = "http://loki:3100/loki/api/v1/push"
+  }
+}

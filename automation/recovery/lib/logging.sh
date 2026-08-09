@@ -33,10 +33,19 @@ create_execution_log() {
 
 log_message() {
 
-    local MESSAGE="$1"
+    local LEVEL="${1:-INFO}"
+    local MESSAGE="${2:-}"
 
-    echo "${MESSAGE}"
+    case "${LEVEL}" in
+        INFO|WARN|ERROR)
+            ;;
+        *)
+            MESSAGE="${LEVEL}${MESSAGE:+ ${MESSAGE}}"
+            LEVEL="INFO"
+            ;;
+    esac
 
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] ${MESSAGE}" >> "${LOG_FILE}"
+    echo "[${LEVEL}] ${MESSAGE}"
 
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [${LEVEL}] ${MESSAGE}" >> "${LOG_FILE}"
 }

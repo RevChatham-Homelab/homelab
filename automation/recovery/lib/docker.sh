@@ -26,7 +26,6 @@ backup_docker() {
         nginx-proxy-manager
         pihole
         portainer
-        prometheus
         uptime-kuma
         website
     )
@@ -43,14 +42,33 @@ backup_docker() {
 
             mkdir -p "${DOCKER_DESTINATION}/${SERVICE}"
 
-            rsync -a \
-                --include="compose.yml" \
-                --include="docker-compose.yml" \
-                --include=".env.example" \
-                --include="README.md" \
-                --exclude="*" \
-                "${DOCKER_SOURCE}/${SERVICE}/" \
-                "${DOCKER_DESTINATION}/${SERVICE}/"
+            if [[ "${SERVICE}" == "grafana" ]]; then
+
+                rsync -a \
+                    --include="*/" \
+                    --include="compose.yml" \
+                    --include="docker-compose.yml" \
+                    --include=".env.example" \
+                    --include="README.md" \
+                    --include="*.yml" \
+                    --include="*.yaml" \
+                    --include="*.alloy" \
+                    --exclude="*" \
+                    "${DOCKER_SOURCE}/${SERVICE}/" \
+                    "${DOCKER_DESTINATION}/${SERVICE}/"
+
+            else
+
+                rsync -a \
+                    --include="compose.yml" \
+                    --include="docker-compose.yml" \
+                    --include=".env.example" \
+                    --include="README.md" \
+                    --exclude="*" \
+                    "${DOCKER_SOURCE}/${SERVICE}/" \
+                    "${DOCKER_DESTINATION}/${SERVICE}/"
+
+            fi
 
         else
 

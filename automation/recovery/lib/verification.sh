@@ -187,16 +187,28 @@ EOF
     for SERVICE in \
         authentik \
         grafana \
+        alloy \
+        loki \
+        prometheus \
         homepage \
         nginx-proxy-manager \
         pihole \
         portainer \
-        prometheus \
         uptime-kuma \
         website
     do
 
-        SERVICE_DIRECTORY="${RECOVERY_POINT_PATH}/docker/${SERVICE}"
+        if [[ "${SERVICE}" == "alloy" ]] ||
+           [[ "${SERVICE}" == "loki" ]] ||
+           [[ "${SERVICE}" == "prometheus" ]]; then
+
+            SERVICE_DIRECTORY="${RECOVERY_POINT_PATH}/docker/grafana/${SERVICE}"
+
+        else
+
+            SERVICE_DIRECTORY="${RECOVERY_POINT_PATH}/docker/${SERVICE}"
+
+        fi
 
         if [[ -f "${SERVICE_DIRECTORY}/compose.yml" ]]; then
             SERVICE_COMPOSE_FILE="${SERVICE_DIRECTORY}/compose.yml"
@@ -377,7 +389,7 @@ EOF
 
     if [[ ! -s "${VERIFICATION_FILE}" ]]; then
 
-        echo "Verification report failed."
+        log_message "ERROR" "Verification report failed."
         return 1
 
     fi
@@ -385,8 +397,10 @@ EOF
     echo "Verification report created."
 
     if [[ "${VERIFICATION_OVERALL_STATUS}" == "PASS" ]]; then
+        log_message "INFO" "Verification completed successfully."
         update_manifest_status "Verification" "Complete"
     else
+        log_message "WARN" "Verification completed with failures."
         update_manifest_status "Verification" "Failed"
     fi
 
