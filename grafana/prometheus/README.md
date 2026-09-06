@@ -6,9 +6,9 @@
 
 **Document:** Prometheus Service README
 
-**Document Version:** 1.0.0
+**Document Version:** 1.1.0
 
-**Last Reviewed:** 2026-08-09
+**Last Reviewed:** 2026-09-06
 
 **Status:** Operational
 
@@ -36,26 +36,29 @@ Prometheus provides:
 -   Docker container monitoring
 -   Metrics storage
 -   Grafana metrics integration
+-   Site-specific Nginx website-traffic collection for Project Liquid Alert
 
 ------------------------------------------------------------------------
 
 # Components
 
-  Component       Purpose
-  --------------- --------------------------------
-  Prometheus      Metrics collection and storage
-  Node Exporter   Host operating system metrics
-  cAdvisor        Docker container metrics
+  Component             Purpose
+  --------------------- -------------------------------------
+  Prometheus            Metrics collection and storage
+  Node Exporter         Host operating system metrics
+  cAdvisor              Docker container metrics
+  Nginx Log Exporter    Site-specific website traffic metrics
 
 ------------------------------------------------------------------------
 
 # Docker Images
 
-  Component       Image                        Version
-  --------------- ---------------------------- -----------
-  Prometheus      `prom/prometheus`            `v3.13.0`
-  Node Exporter   `prom/node-exporter`         `v1.11.1`
-  cAdvisor        `gcr.io/cadvisor/cadvisor`   `v0.55.1`
+  Component             Image                                                         Version
+  --------------------- ------------------------------------------------------------- -----------
+  Prometheus            `prom/prometheus`                                             `v3.13.0`
+  Node Exporter         `prom/node-exporter`                                          `v1.11.1`
+  cAdvisor              `gcr.io/cadvisor/cadvisor`                                    `v0.55.1`
+  Nginx Log Exporter    `quay.io/martinhelmich/prometheus-nginxlog-exporter`           `v1.11.0`
 
 ------------------------------------------------------------------------
 
@@ -101,6 +104,15 @@ Published service ports:
   --------------- --------
   Prometheus      `9090`
   Node Exporter   `9100`
+
+The Nginx log exporter is published only on host loopback:
+
+``` text
+127.0.0.1:4040
+```
+
+Prometheus reaches the exporter privately through the `homelab` Docker
+network at `nginxlog-exporter:4040`.
 
 Grafana accesses Prometheus across the shared Docker network for
 dashboard visualization.
@@ -167,6 +179,11 @@ Alloy provide the complementary centralized logging pipeline.
 The Prometheus service configuration itself was not changed as part of
 the 2026-08-09 repository relocation.
 
+The `nginx_website` scrape job collects site-specific request, response
+status, transferred-byte, and origin response-time metrics from the Nginx
+log exporter. This job uses a five-second scrape interval to support the
+Project Liquid Alert website-traffic card.
+
 ------------------------------------------------------------------------
 
 # Recovery Automation Integration
@@ -190,6 +207,10 @@ Following the Docker daemon restart on 2026-08-09:
 -   Node Exporter restarted successfully.
 -   cAdvisor restarted successfully and reported healthy.
 -   Grafana displayed current Node Exporter metrics after the restart.
+-   Nginx Log Exporter returned website-specific metrics.
+-   Prometheus reported `up{job="nginx_website"}` as `1`.
+-   Exporter access-log parse errors remained at `0`.
+-   The five-second scrape cadence was verified.
 
 ------------------------------------------------------------------------
 
@@ -209,4 +230,4 @@ docs/audits/prometheus.md
 
 ---
 
-Prometheus Service README v1.0.0
+Prometheus Service README v1.1.0

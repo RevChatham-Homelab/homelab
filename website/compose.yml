@@ -1,0 +1,34 @@
+services:
+  website:
+    image: nginx:latest
+    container_name: revchatham-site
+    restart: unless-stopped
+    networks:
+      - homelab
+    ports:
+      - "8081:80"
+    volumes:
+      - ./html:/usr/share/nginx/html:ro
+      - ./nginx/pla-logging.conf:/etc/nginx/conf.d/00-pla-logging.conf:ro
+      - ./logs:/var/log/nginx/pla
+
+  nginxlog-exporter:
+    image: quay.io/martinhelmich/prometheus-nginxlog-exporter:v1.11.0
+    container_name: nginxlog-exporter
+    restart: unless-stopped
+    depends_on:
+      - website
+    networks:
+      - homelab
+    ports:
+      - "127.0.0.1:4040:4040"
+    volumes:
+      - ./logs:/mnt/nginxlogs:ro
+      - ./exporter/config.hcl:/etc/prometheus-nginxlog-exporter.hcl:ro
+    command:
+      - -config-file
+      - /etc/prometheus-nginxlog-exporter.hcl
+
+networks:
+  homelab:
+    external: true
