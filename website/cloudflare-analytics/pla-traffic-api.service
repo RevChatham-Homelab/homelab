@@ -1,0 +1,40 @@
+[Unit]
+Description=PLA read-only historical traffic API
+After=network-online.target pla-cloudflare-analytics.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pla-analytics-api
+Group=pla-analytics-api
+ExecStart=/usr/bin/python3 /usr/local/lib/pla-cloudflare-analytics/api.py --config /etc/pla-api/traffic-api.conf
+Restart=on-failure
+RestartSec=5s
+UMask=0027
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHome=true
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectProc=invisible
+ProcSubset=pid
+ProtectSystem=strict
+ReadOnlyPaths=/etc/pla-api /var/lib/pla-api
+InaccessiblePaths=/etc/pla /var/lib/pla /var/backups/pla-analytics
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+CapabilityBoundingSet=
+AmbientCapabilities=
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target

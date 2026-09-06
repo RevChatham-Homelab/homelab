@@ -1,0 +1,26 @@
+[cloudflare]
+zone_id = CLOUDFLARE_ZONE_ID
+account_id = CLOUDFLARE_ACCOUNT_ID
+plan = free
+hostnames = revchatham.com,www.revchatham.com
+api_url = https://api.cloudflare.com/client/v4/graphql
+request_source = eyeball
+
+[storage]
+database_path = /var/lib/pla/analytics/traffic.sqlite
+timezone = UTC
+
+[collection]
+settlement_delay_minutes = 15
+overlap_hours = 6
+request_timeout_seconds = 30
+retry_attempts = 5
+retry_base_seconds = 2
+
+[backup]
+directory = /var/backups/pla-analytics
+retention_count = 14
+
+[api]
+snapshot_path = /var/lib/pla-api/traffic.sqlite
+snapshot_group = pla-analytics-api

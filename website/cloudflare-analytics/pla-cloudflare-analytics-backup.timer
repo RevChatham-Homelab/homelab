@@ -1,0 +1,12 @@
+[Unit]
+Description=Back up the PLA traffic database daily
+
+[Timer]
+OnCalendar=*-*-* 02:15:00 UTC
+Persistent=true
+RandomizedDelaySec=10m
+AccuracySec=1m
+Unit=pla-cloudflare-analytics-backup.service
+
+[Install]
+WantedBy=timers.target

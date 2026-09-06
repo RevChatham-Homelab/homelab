@@ -1,0 +1,38 @@
+[Unit]
+Description=PLA Cloudflare hourly analytics collector
+Documentation=https://developers.cloudflare.com/analytics/graphql-api/
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=pla-analytics
+Group=pla-analytics
+EnvironmentFile=/etc/pla/cloudflare.env
+ExecStart=/usr/bin/python3 /usr/local/lib/pla-cloudflare-analytics/collector.py --config /etc/pla/cloudflare-analytics.conf collect
+UMask=0027
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHome=true
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectSystem=strict
+ReadOnlyPaths=/etc/pla
+ReadWritePaths=/var/lib/pla/analytics /var/lib/pla-api
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+CapabilityBoundingSet=
+AmbientCapabilities=
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target

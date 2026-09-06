@@ -1,0 +1,5 @@
+[api]
+bind_address = 100.105.250.86
+port = 9468
+database_path = /var/lib/pla-api/traffic.sqlite
+max_rows = 5000
