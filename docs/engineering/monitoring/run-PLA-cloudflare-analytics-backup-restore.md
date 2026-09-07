@@ -34,6 +34,7 @@ failure by themselves.
 - Schedule: 23:00 America/New_York (03:00 UTC while EDT applies)
 - Mode: snapshot
 - Compression: Zstandard
+- Guest coordination: QEMU guest agent enabled and verified
 - Storage ID: `hdd-backups`
 - Physical target: separate 1 TB HDD mounted at `/mnt/fileserver-data`
 - Archive directory: `/mnt/fileserver-data/dump/`
@@ -242,26 +243,28 @@ The detailed collector/API removal sequence is in
 `/home/angel/homelab/website/cloudflare-analytics/README.md`. Preserve
 `traffic.sqlite` and the backup snapshots before removing accounts or paths.
 
-## 7. Known limitation and next improvement
+## 7. QEMU guest-agent status
 
-The first verified Proxmox archive was created successfully in snapshot mode,
-but VM 100 did not have the QEMU guest agent enabled, so Proxmox skipped guest
-filesystem freezing. The VM archive remains crash-consistent, and the included
-SQLite backup is application-consistent.
+`qemu-guest-agent` version `1:8.2.2+ds-0ubuntu1.18` and its `liburing2`
+dependency were installed on VM 100. The Proxmox VM option is
+`agent: enabled=1`. After a controlled reboot, the service was active, the
+virtio communication device was present, Proxmox agent ping passed, and guest
+OS information was readable.
 
-Recommended follow-up: inspect, install if needed, and enable
-`qemu-guest-agent` during a controlled maintenance window. Then confirm that a
-subsequent Proxmox task log no longer reports that filesystem freezing was
-skipped.
+The first scheduled backup issued both `fs-freeze` and `fs-thaw` successfully.
+This completed the planned whole-VM consistency improvement.
 
 This HDD backup is local to the Proxmox host. Add an encrypted off-site copy in
 a later phase to protect against loss of the entire host or both internal
 drives.
 
-## 8. First verified archive
+## 8. First verified scheduled archive
 
-- Archive: `vzdump-qemu-100-2026_09_06-20_04_33.vma.zst`
-- Size: 13,095,624,716 bytes
-- SHA-256: `becf807d0dae5f2120ad41622a2dd0fa6cad18b14fbb9d05f5021fbc700bb8a2`
+- Archive: `vzdump-qemu-100-2026_09_06-23_00_06.vma.zst`
+- Size: 13,056,343,017 bytes
+- SHA-256: `064a3ce9103138e500bc00807f5d0f3073c7b8da24529b9d807c3a4e91c06370`
 - Zstandard integrity test: passed
+- Guest filesystem freeze/thaw: passed
+- Scheduled job completion: `TASK OK`
+- Retention: pruned the earlier same-day manual archive as expected
 - VM status after backup: running
