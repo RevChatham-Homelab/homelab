@@ -1,6 +1,6 @@
 # PLA Cloudflare Analytics Backup and Restore Runbook
 
-Status: Implemented and verified 2026-09-06 EDT / 2026-09-07 UTC  
+Status: Implemented and verified 2026-09-06 EDT / 2026-09-07 UTC
 Scope: Ubuntu VM 100 (`UbuntuServer24.04`) and PLA Cloudflare analytics
 
 ## 1. Recovery layers
