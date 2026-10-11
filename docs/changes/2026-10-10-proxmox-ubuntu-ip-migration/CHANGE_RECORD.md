@@ -272,12 +272,26 @@ available to avoid losing remote management.
 
 ## 13. Outstanding Follow-Up
 
-- [ ] Test fresh Grafana OAuth login from outside LAN
-- [ ] Review other services for hardcoded legacy addresses
-- [ ] Verify exact migration backup filenames and retention
-- [ ] Confirm GitHub documentation commit and push
+- [x] Test fresh Grafana OAuth login from outside LAN (verified via cellular, Wi-Fi disabled)
+- [x] Review other services for hardcoded legacy addresses
+- [x] Verify migration backup files exist; retention policy not yet established
+- [x] Confirm GitHub documentation commit and push
 
-## 14. Outcome
+## 14. Post-Migration Hostname Correction
+
+Ubuntu Server's `/etc/hosts` contained a stale mapping:
+
+- Previous: `192.168.1.100 pve7060`
+- Corrected: `192.168.1.99 pve7060`
+
+The original hosts file was preserved at
+`/etc/hosts.before-ip-migration-fix`.
+
+Verification:
+- `getent ahostsv4 pve7060` returned `192.168.1.99`.
+- `ping -c 3 pve7060` succeeded with zero packet loss.
+
+## 15. Outcome
 
 The planned IP migration was completed successfully.
 
